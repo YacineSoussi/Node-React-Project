@@ -4,5 +4,7 @@
 ./mongo
 # Ignore SampleCollections
 ./SampleCollections
+# Ignore node_modules in server
+./server/node_modules
 
 
