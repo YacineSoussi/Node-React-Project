@@ -1,0 +1,16 @@
+###
+
+GET http://localhost:3000/logs
+
+###
+POST http://localhost:3000/logs
+Content-Type: application/json
+
+{   
+    "message": 2,
+    "level": "info"
+}
+
+###
+
+GET http://localhost:3000/logs/62c5abede75cf83d3526d77f
