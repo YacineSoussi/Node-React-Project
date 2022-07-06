@@ -17,7 +17,7 @@ module.exports = (mongoose) => {
 });
 LogSchema.post('save', function() {
     this.type = 'server';
-    console.log(this.message);
+    this.level = "info";
   });
 
 const Log = mongoose.model('Logs', LogSchema);

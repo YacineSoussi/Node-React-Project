@@ -18,6 +18,6 @@ app.get('/', (_,__, next) => {
 // app.use(HttpCodes);
 app.use(Logs);
 
-app.listen(port , () => {
-  logger.info('Server is running on port ' + port );
-})
+app.listen(port, () => {
+    Logger.log("Server is running on port ", port);
+});
