@@ -1,0 +1,80 @@
+## eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMzA5ODUsImV4cCI6MTY4ODU4ODU4NX0.S3IFe_e0_RBuOk25uZfYEPxWi911s2tVEAoPltGVrpQ
+
+GET http://localhost:3000/http-codes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
+# headers
+
+# body
+###
+GET http://localhost:3000/http-codes/62bd800ad7f21f3fbb2d508c
+
+###
+POST http://localhost:3000/http-codes
+Content-Type: application/json
+
+{
+    "code": "200",
+    "message": "OK",
+    "description": "The request has succeeded."
+}
+###
+PUT http://localhost:3000/http-codes/62bd800ad7f21f3fbb2d508c
+Content-Type: application/json
+
+{
+    "code": "201",
+    "message": "ok"
+}
+
+###
+DELETE http://localhost:3000/http-codes/62bd800ad7f21f3fbb2d508c
+
+#########
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiYWxpbG91IiwiaWF0IjoxNjU3MTIyMjMyLCJleHAiOjE2ODg2Nzk4MzJ9.wcJAwEcMCm2askMzs_hVkkyEtGLoHfJE9WFZYB7MWjY
+# headers
+
+# body
+###
+GET http://localhost:3000/users/1
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "email": "200@test.com",
+    "password": "OKOKOKOK",
+    "firstName": "The request has succeeded."
+}
+###
+PUT http://localhost:3000/users/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMzA5ODUsImV4cCI6MTY4ODU4ODU4NX0.S3IFe_e0_RBuOk25uZfYEPxWi911s2tVEAoPltGVrpQ
+
+{
+    "password": "KkKOKOKO"
+}
+
+###
+DELETE http://localhost:3000/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
+###
+###
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "email": "203@test.com",
+    "password": "OKOKOKOK",
+    "firstName": "alilou"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "203@test.com",
+    "password": "OKOKOKOK"
+}

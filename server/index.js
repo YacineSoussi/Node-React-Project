@@ -1,23 +1,21 @@
-const express = require('express');
+const express = require("express");
 const port = process.env.PORT || 3000;
-const app = express();
-const logger = require("./lib/logger");
+const UserRouter = require("./routes/users");
+const Logger = require("./lib/logger");
 const Logs = require('./routes/logs');
-
+const SecurityRouter = require("./routes/security");
+const app = express();
 
 app.use(express.json());
 
-app.get('/', (_,__, next) => {
-    console.log('Test first middlware');
-    next();
-}, (req, res, next) => {
-    res.send('Hello World!');
-}
-);
+app.get("/", (_, res, __) => {
+    res.send("Hello World!");
+});
 
-// app.use(HttpCodes);
+app.use(SecurityRouter);
+app.use(UserRouter);
 app.use(Logs);
 
-app.listen(port , () => {
-  logger.info('Server is running on port ' + port );
-})
+app.listen(port, () => {
+    Logger.log("Server is running on port " + port);
+});
