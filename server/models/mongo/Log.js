@@ -8,18 +8,16 @@ module.exports = (mongoose) => {
     },
     type: {
         type: String,
-        required: true,
+        required: false,
     },
     level: {
         type: String,
-        required: true,
+        required: false,
     }
 });
-LogSchema.pre('save', function() {
+LogSchema.post('save', function() {
     this.type = 'server';
     this.level = "info";
-    console.log(LogSchema);
-
   });
 
 const Log = mongoose.model('Logs', LogSchema);

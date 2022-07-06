@@ -1,19 +1,16 @@
-const { createLogger, format, transports } = require('winston');
+const winston = require("winston");
 require("winston-mongodb");
-const { combine, timestamp, label, prettyPrint } = format;
 
 const { mongoose } = require("../models/mongo");
-const logger = createLogger({
+const logger = winston.createLogger({
   level: "info",
-  format: combine(
-    format.json()
-    ),
+  format: winston.format.json(),
   transports: [
     //
     // - Write all logs with importance level of `error` or less to `error.log`
     // - Write all logs with importance level of `info` or less to `combined.log`
     //
-    new transports.MongoDB({
+    new winston.transports.MongoDB({
       db: mongoose.connection,
       collection: "logs",
     }),
@@ -26,8 +23,8 @@ const logger = createLogger({
 //
 if (process.env.NODE_ENV !== "production") {
   logger.add(
-    new transports.Console({
-      format: format.simple(),
+    new winston.transports.Console({
+      format: winston.format.simple(),
     })
   );
 }
