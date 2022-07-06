@@ -16,8 +16,9 @@ module.exports = (mongoose) => {
     }
 });
 LogSchema.pre('save', function() {
-    // add type of log
     this.type = 'server';
+    this.level = "info";
+    console.log(LogSchema);
 
   });
 

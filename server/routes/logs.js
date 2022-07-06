@@ -34,8 +34,10 @@ router.post('/logs', async (req, res) => {
         if (error instanceof ValidationError) {
             res.status(422).json(formatError(Object.values(error.errors)));
             logger.error(Object.values(error.errors));
+
         }
         res.sendStatus(500);
+        logger.error(Object.values(error.errors));
         console.error(error);
     }
 }
@@ -55,6 +57,7 @@ router.delete('/logs/:id', async (req, res) => {
     }
     catch (error) {
         res.sendStatus(500);
+        logger.error(Object.values(error.errors));
         console.error(error);
     }
 }
@@ -79,6 +82,7 @@ router.put('/logs/:id', async (req, res) => {
             res.status(422).json(formatError(Object.values(error.errors)));
         }
         res.sendStatus(500);
+        logger.error(Object.values(error.errors));
         console.error(error);
     }
 }
