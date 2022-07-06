@@ -7,7 +7,7 @@ POST http://localhost:3000/logs
 Content-Type: application/json
 
 {   
-    "message": ["message1", "message2"],
+    "message": ["test post-save"],
     "type": "server",
     "level": "info"
 }

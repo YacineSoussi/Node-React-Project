@@ -5,6 +5,5 @@
 # Ignore SampleCollections
 ./SampleCollections
 # Ignore node_modules in server
-./server/node_modules
-
+server/node_modules/
 

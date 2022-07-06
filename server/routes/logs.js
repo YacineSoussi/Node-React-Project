@@ -37,7 +37,7 @@ router.post('/logs', async (req, res) => {
 
         }
         res.sendStatus(500);
-        logger.error(Object.values(error.errors));
+        logger.error(formatError(error));
         console.error(error);
     }
 }
@@ -57,7 +57,7 @@ router.delete('/logs/:id', async (req, res) => {
     }
     catch (error) {
         res.sendStatus(500);
-        logger.error(Object.values(error.errors));
+        logger.error(formatError(error));
         console.error(error);
     }
 }
@@ -82,7 +82,7 @@ router.put('/logs/:id', async (req, res) => {
             res.status(422).json(formatError(Object.values(error.errors)));
         }
         res.sendStatus(500);
-        logger.error(Object.values(error.errors));
+        logger.error(formatError(error));
         console.error(error);
     }
 }
@@ -103,6 +103,7 @@ router.get('/logs/:id', async (req, res) => {
     } catch (error) {
         res.sendStatus(500);
         console.error(formatError(error));
+        logger.error(formatError(error));
     }
 });
 
