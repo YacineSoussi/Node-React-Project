@@ -17,5 +17,5 @@ app.use(UserRouter);
 app.use(Logs);
 
 app.listen(port, () => {
-    Logger.log("Server is running on port ", port);
+    Logger.info("Server is running on port " + port);
 });
