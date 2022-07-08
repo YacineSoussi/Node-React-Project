@@ -1,30 +1,31 @@
 exports.connection = require("./db");
 exports.User = require("./entities/User");
-exports.Article = require("./entities/Article");
-const { ArticleMongo, Article } = require("../mongo");
+exports.Message = require("./entities/Message");
+const MessageMongo  = require("../mongo").Message;
 const User = require("./entities/User");
+const ObjectId = require("mongodb").ObjectId;
 
-exports.User.hasMany(exports.Article);
-exports.Article.belongsTo(exports.User, { as: "owner" });
+exports.User.hasMany(exports.Message);
+exports.Message.belongsTo(exports.User, { as: "owner" });
 
-function denormalizeArticle(article) {
-    Article.findOne({
+function denormalizeMessage(message) {
+       
+    exports.Message.findOne({
         where: {
-            id: article.id,
+            id: message.id,
         },
         include: [{ model: User, as: "owner", attributes: ["id", "firstName"] }],
-    }).then(async(article) => {
-        await ArticleMongo.findOneAndUpdate({ _id: article.id }, {
-            _id: article.id,
-            ...article,
+    }).then(async(message) => {
+        await MessageMongo.findOneAndUpdate({ _id: new ObjectId(message.dataValues.id)  }, {
+            ...message.dataValues,
         }, {
             upsert: true,
         });
     });
 }
 
-exports.Article.addHook("afterCreate", denormalizeArticle);
-exports.Article.addHook("afterUpdate", denormalizeArticle);
-exports.Article.addHook("afterDestroy", (article) => {
-    ArticleMongo.deleteOne({ _id: article.id });
+exports.Message.addHook("afterCreate", denormalizeMessage);
+exports.Message.addHook("afterUpdate", denormalizeMessage);
+exports.Message.addHook("afterDestroy", (message) => {
+    MessageMongo.deleteOne({ _id: message.id });
 });
