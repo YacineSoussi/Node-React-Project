@@ -34,8 +34,10 @@ services:
     working_dir: /usr/local/server
     environment:
       - REACT_API_URL=http://server:3000
+      - CLIENT_PORT=3001
+      - CLIENT_HOST=0.0.0.0
     ports:
-      - 127.0.0.1:3001:3000
+      - 127.0.0.1:3001:3001
     command: npm start
 
   adminer:

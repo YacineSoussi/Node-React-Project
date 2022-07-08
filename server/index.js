@@ -6,8 +6,14 @@ const Logs = require('./routes/logs');
 const Messages = require('./routes/messages');
 const SecurityRouter = require("./routes/security");
 const app = express();
+const cors = require("cors");
+const compression =  require("compression");
 
 app.use(express.json());
+
+app.use(cors({
+    origin: "*"
+  }));
 
 app.get("/", (_, res, __) => {
     res.send("Hello World!");
