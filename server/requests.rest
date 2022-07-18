@@ -65,9 +65,10 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "email": "203@test.com",
+    "email": "204@test2.com",
     "password": "OKOKOKOK",
-    "firstName": "alilou"
+    "firstName": "ali",
+    "lastName": "raid"
 }
 
 ###
@@ -75,6 +76,6 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "203@test.com",
-    "password": "OKOKOKOK"
+    "email": "",
+    "password": "OKOKOK"
 }

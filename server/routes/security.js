@@ -1,7 +1,9 @@
 const { Router } = require("express");
+const express = require("express");
 const { User } = require("../models/postgres");
 const { ValidationError } = require("sequelize");
 const { createToken } = require("../lib/tokenManager.js");
+const cors = require("cors");
 const bcryptjs = require("bcryptjs");
 
 const router = new Router();
@@ -12,6 +14,7 @@ function formatError(error) {
         return acc;
     }, {});
 }
+
 
 router.post("/register", async(req, res) => {
     try {
@@ -31,14 +34,18 @@ router.post("/register", async(req, res) => {
 
 router.post("/login", async(req, res) => {
     try {
-        const result = await User.findOne({ email: req.body.email });
+        console.log('hellooooooo');
+        const result = await User.findOne({ where: { email: req.body.email } });
+        console.log(result)
         if (
             result &&
             (await bcryptjs.compare(req.body.password, result.password))
         ) {
             res.json({
                 token: await createToken(result),
+                userData: await User.findAll({ where: { email: req.body.email } })
             });
+
         } else {
             res.sendStatus(401);
         }
