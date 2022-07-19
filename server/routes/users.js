@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User } = require("../models/postgres");
+const { User, Participant } = require("../models/postgres");
 const { ValidationError } = require("sequelize");
 const checkAuthentication = require("../middlewares/checkAuthentication");
 
@@ -14,7 +14,11 @@ function formatError(error) {
 
 router.get("/users", checkAuthentication, async(req, res) => {
     try {
-        const result = await User.findAll({ where: req.query });
+        const result = await User.findAll(
+            { include: {
+                model: Participant, as: "participants", attributes: ["conversationId"],
+            } }
+            );
         res.json(result);
     } catch (error) {
         res.sendStatus(500);

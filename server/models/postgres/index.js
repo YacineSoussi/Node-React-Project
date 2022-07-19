@@ -39,7 +39,7 @@ exports.Participant.belongsTo(exports.Conversation, {
     foreignKey: "conversationId",
     });
 
-exports.Conversation.hasOne(exports.Message, {
+exports.Conversation.belongsTo(exports.Message, {
     foreignKey: "lastMessageId"
     });
 
