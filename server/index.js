@@ -9,16 +9,15 @@ const Participants = require('./routes/participants');
 const SecurityRouter = require("./routes/security");
 const app = express();
 const cors = require("cors");
-const compression =  require("compression");
+const compression = require("compression");
 
 app.use(express.json());
-
 app.use(cors({
     origin: "*"
-  }));
+}));
 
 app.get("/", (_, res, __) => {
-    res.send("Hello World!");
+    res.json({ data: "je suis la" });
 });
 
 app.use(Messages)

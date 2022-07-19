@@ -1,0 +1,8 @@
+:root {
+    --brown-1: #D27955;
+    --brown-2: #7E544E;
+    --brown-3: #520800;
+    --brown-4: #55433B;
+    --main-brown: var(--brown-1);
+    --dark-blue-color: #46678a;
+}

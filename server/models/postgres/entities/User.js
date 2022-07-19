@@ -32,6 +32,15 @@ User.init({
             },
         },
     },
+    lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: {
+                min: 1,
+            },
+        },
+    },
     role: {
         type: DataTypes.STRING,
         allowNull: false,
