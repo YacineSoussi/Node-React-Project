@@ -2,6 +2,9 @@ const { Router } = require("express");
 const { Message } = require("../models/postgres");
 const { ValidationError } = require("sequelize");
 const checkAuthentication = require("../middlewares/checkAuthentication");
+const User = require("../models/postgres/entities/User");
+const MessagePostgres = require("../models/postgres/entities/Message");
+const Participant = require("../models/postgres/entities/Participant");
 
 const router = new Router();
 
@@ -92,5 +95,6 @@ router.get("/messages/:id", checkAuthentication, async(req, res) => {
         console.error(error);
     }
 });
+
 
 module.exports = router;

@@ -37,15 +37,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROY
 # body
 ###
 GET http://localhost:3000/users/1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiYWxpbG91IiwiaWF0IjoxNjU3MTIyMjMyLCJleHAiOjE2ODg2Nzk4MzJ9.wcJAwEcMCm2askMzs_hVkkyEtGLoHfJE9WFZYB7MWjY
 ###
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "email": "200@test.com",
+    "email": "209@test.com",
     "password": "OKOKOKOK",
-    "firstName": "The request has succeeded."
+    "firstName": "The request has succeeded.",
+    "role": "admin"
 }
 ###
 PUT http://localhost:3000/users/3
