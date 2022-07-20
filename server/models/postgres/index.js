@@ -51,10 +51,8 @@ function denormalizeMessage(message) {
         where: {
             id: message.id,
         },
-          include: [{ model: exports.User, as: "author" }],
         
     }).then(async(message) => {
-        console.log(message.dataValues);
         await MessageMongo.findOneAndUpdate({ _id: new ObjectId(message.dataValues.id)  }, {
             ...message.dataValues,
         }, {

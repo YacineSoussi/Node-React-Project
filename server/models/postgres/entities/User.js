@@ -34,7 +34,7 @@ User.init({
     },
     lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
             len: {
                 min: 1,
