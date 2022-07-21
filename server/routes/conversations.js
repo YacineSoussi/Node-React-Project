@@ -55,7 +55,6 @@ router.get("/myconversations/:userId", checkAuthentication, async (req, res) => 
         });
         
         if (conversations.length === 0) {
-           
             res.json({
                 message: "No conversation found"
             });

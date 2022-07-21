@@ -61,6 +61,25 @@ function denormalizeMessage(message) {
     });
 }
 
+function updateLastMessage(message) {
+
+    exports.Conversation.findOne({
+        where: {
+            id: message.conversationId,
+        }
+    }).then(async() => {
+        await exports.Conversation.update({
+            lastMessageId: message.id,
+        }, {
+            where: {
+                id: message.conversationId,
+            },
+        });
+    }
+    );
+}
+
+exports.Message.addHook("afterCreate", updateLastMessage);
 exports.Message.addHook("afterCreate", denormalizeMessage);
 exports.Message.addHook("afterUpdate", denormalizeMessage);
 exports.Message.addHook("afterDestroy", (message) => {
