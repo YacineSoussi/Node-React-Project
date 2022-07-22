@@ -36,13 +36,15 @@ export const MessagerieApp = () => {
 
                 //    find  last element of array
                 let lastMessage = null;
-                if (conversation.messages > 0) {
+                
+                if (conversation.messages.length > 0) {
                     
                      lastMessage = conversation.messages.reduce((a, b) => {
                         return a.updatedAt > b.updatedAt ? a : b;
                     }
                     );
                 }
+                console.log(lastMessage);
                     return {
                         ...conversation,
                       lastMessage
