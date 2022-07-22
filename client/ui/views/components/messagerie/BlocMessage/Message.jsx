@@ -3,12 +3,17 @@ import React from 'react';
 const Message = (props) => {
     
     const ddate = props.message.createdAt;
-    const year = ddate.slice(0, 4);
-    const month = ddate.slice(5, 7);
-    const day = ddate.slice(8, 10);
-    const hour = ddate.slice(11, 13);
-    const minute = ddate.slice(14, 16);
-    const date = day + "-" + month + "-" + year + " " +  hour + ":" + minute;
+    let date = new Date(ddate);
+    if (ddate) { 
+        const year = ddate.slice(0, 4);
+        const month = ddate.slice(5, 7);
+        const day = ddate.slice(8, 10);
+        const hour = ddate.slice(11, 13);
+        const minute = ddate.slice(14, 16);
+         date = day + "-" + month + "-" + year + " " +  hour + ":" + minute;
+    } else {
+        date = 'new Date()';
+    }
    
     return (
         <div className={`media w-50 mb-3 ${props.message.authorId === props.user.id ? `ms-auto` : ``}`} >

@@ -9,11 +9,10 @@ const Conversation = (props) => {
 
     useEffect(() => {
         fetchUser();
-        // setAuthorLastMessage(props.conversation);
         if (props.conversation.lastMessage) {
-            
             setAuthorLastMessage(props.conversation.lastMessage.authorId);
         }
+        // console.log(props.conversation);
     }, []);
     
     

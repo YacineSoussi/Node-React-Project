@@ -4,7 +4,6 @@ import Conversation from './Conversation';
 // import ConversationContext from '../MessagerieApp/ConversationContext';
 
 const App = (props) => {
-
     return (
         <div className="col-5 px-0">
             <div className="bg-white">

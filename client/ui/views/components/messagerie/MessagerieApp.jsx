@@ -13,13 +13,13 @@ export const MessagerieApp = () => {
     const [selectedConversation, setSelectedConversation] = useState(null);
     const [Messages, setMessages] = useState([]);
     const [user, setUser] = useState(null);
-
+    const [updatedConversation, setUpdatedConversation] = useState(null);
    
     // use effect to fetch conversations
     useEffect(() => {
         fetchConversations();
         setUser(getUserData());
-    }, []);
+    }, [updatedConversation]);
 
     const fetchConversations = async () => {
         const response = await fetch(`http://localhost:3000/myconversations/${getUserData().id}`, {
@@ -32,7 +32,12 @@ export const MessagerieApp = () => {
             .then(response => response.json())
             .then(data => {
                 const conversations = data.map(conversation => {
-                    const lastMessage = conversation.messages.slice(-1)[0];
+
+                //    find  last element of array
+                const lastMessage = conversation.messages.reduce((a, b) => {
+                    return a.updatedAt > b.updatedAt ? a : b;
+                }
+                );
                     return {
                         ...conversation,
                         lastMessage
@@ -40,7 +45,10 @@ export const MessagerieApp = () => {
                 }
                 );
                setConversations(conversations);
-               setSelectedConversationId(conversations[0].id);
+
+               if (selectedConversationId === null) {   
+                   setSelectedConversationId(conversations[0].id);
+               }
 
             }).catch(error => {
                 console.error(error);
@@ -88,14 +96,14 @@ export const MessagerieApp = () => {
         <div className="container py-5 px-4">
         <div className="row rounded-lg overflow-hidden shadow d-flex">
 
-            <App user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
+            <App conversation={conversations} setConversations={setConversations} user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
             {/* <Switch>
                 <Route path="/messagerie" component={Blank} exact />
                 <Route path="/conversation/:id"
                        render={props => <Right {...props} key={props.match.params.id}></Right> }
                 />
             </Switch> */}
-            <Right user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
+            <Right setUpdatedConversation={setUpdatedConversation} conversation={selectedConversation} setConversation={setSelectedConversation} user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
            
            
         </div>
