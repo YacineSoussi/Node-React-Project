@@ -31,8 +31,12 @@ code {
     height: calc(100% - 70px);
 }
 
+.App .message-container {
+    height: 100%;
+}
+
 .App .message-container .message-row {
-    height: 800px;
+    height: 100%;
 }
 
 .App .app-col-message {
