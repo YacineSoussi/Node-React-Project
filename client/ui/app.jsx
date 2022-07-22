@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ToastProvider } from 'react-toast-notifications';
-import { Header } from './views/Header';
-import { Container } from 'react-bootstrap';
 
+import { Container } from 'react-bootstrap';
+import { Header } from './views/Header';
+import React from "react";
+import { ToastProvider } from 'react-toast-notifications';
 
 export const App = ({appRoutes}) => {
 
@@ -12,8 +12,7 @@ export const App = ({appRoutes}) => {
       <ToastProvider placement={'bottom-center'}>
         <div className="App">
           <Header/>
-
-          <Container fluid='md' className='py-3 h-100'>
+          <Container fluid='md' className='main-container'>
             <Switch>
               {appRoutes.map((route, index) =>
                 <Route key={index} component={route.component} path={route.path} exact={route.exact}/>
@@ -23,8 +22,5 @@ export const App = ({appRoutes}) => {
         </div>
       </ToastProvider>
     </BrowserRouter>
-  )
- 
+  );
 };
-
-

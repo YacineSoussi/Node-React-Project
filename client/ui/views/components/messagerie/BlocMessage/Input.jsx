@@ -38,7 +38,7 @@ const Input = (props) => {
                 createdAt: data.createdAt
             };
             props.setConversation(conversationMAJ);
-           props.setUpdatedConversation(conversationMAJ);
+            props.setUpdatedConversation(conversationMAJ);
         }
         ).catch(error => {
             console.error(error);
@@ -46,7 +46,7 @@ const Input = (props) => {
         );
         return response;
     }
-    
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -59,15 +59,13 @@ const Input = (props) => {
     }
 
     return (
-        <form onSubmit={fetchNewMessage} action="#" className="bg-light mb-auto">
+        <form onSubmit={fetchNewMessage} action="#" className="bg-light mb-auto form-input">
             <div className="input-group">
                 <input type="text" placeholder="Type a message"
-                       aria-describedby="button-addon2"
-                       className="form-control rounded-0 border-0 py-4 bg-light"/>
+                    aria-describedby="button-addon2"
+                    className="form-control rounded-0 border-0 py-4 bg-light"/>
                 <div className="input-group-append">
-                    <button id="button-addon2" type="submit"
-                           
-                            className="btn btn-link">
+                    <button id="button-addon2" type="submit"className="btn btn-link">
                         <i className="fa fa-paper-plane"></i>
                     </button>
                 </div>

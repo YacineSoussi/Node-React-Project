@@ -18,3 +18,36 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.App {
+    height: 100%;
+}
+
+.App nav .navbar {
+    height: 70px;
+}
+
+.App .main-container {
+    height: calc(100% - 70px);
+}
+
+.App .message-container .message-row {
+    height: 800px;
+}
+
+.App .app-col-message {
+    overflow: auto;
+    height: 100%;
+}
+
+.App #test {
+    height: 100%;
+}
+
+.App #test .chat-box {
+    height: calc(100% - 82px);
+}
+
+.App #test .form-input {
+    margin: 10px 0 0 30px;
+}
