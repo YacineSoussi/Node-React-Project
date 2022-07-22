@@ -22,7 +22,7 @@ export const MessagerieApp = () => {
     }, []);
 
     const fetchConversations = async () => {
-        const response = await fetch('http://localhost:3000/myconversations/4', {
+        const response = await fetch(`http://localhost:3000/myconversations/${getUserData().id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

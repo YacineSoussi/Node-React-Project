@@ -49,13 +49,13 @@ Content-Type: application/json
     "role": "admin"
 }
 ###
-PUT http://localhost:3000/users/1
+PUT http://localhost:3000/users/6
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMzA5ODUsImV4cCI6MTY4ODU4ODU4NX0.S3IFe_e0_RBuOk25uZfYEPxWi911s2tVEAoPltGVrpQ
 
 {
-    "lastName": "ROULIO",
-    "firstName": "CESAR"
+    "lastName": "SAIKI",
+    "firstName": "Moncef"
 }
 
 ###

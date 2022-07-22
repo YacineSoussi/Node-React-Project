@@ -13,7 +13,6 @@ const Conversation = (props) => {
         if (props.conversation.lastMessage) {
             
             setAuthorLastMessage(props.conversation.lastMessage.authorId);
-            console.log(props.conversation.lastMessage.authorId);
         }
     }, []);
     
@@ -69,7 +68,10 @@ const Conversation = (props) => {
                     </div>
                     <p className="font-italic mb-0 text-small">
                         
-                        {authorLastMessage === props.user.id ? <span className="font-weight-bold font-italic">Moi : </span>: destinataire ? <span className='font-weight-bold'>{destinataire.firstName} {destinataire.lastName} : </span> : null}
+                        {authorLastMessage === props.user.id ? 
+                        <span className="font-weight-bold font-italic">Moi : </span>
+                        : destinataire ? <span className='font-weight-bold'>{destinataire.firstName} {destinataire.lastName} : </span> 
+                        : null}
                         {props.conversation.lastMessage ? props.conversation.lastMessage.content : null}
                         
                         </p>
