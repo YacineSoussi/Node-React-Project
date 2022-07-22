@@ -35,13 +35,17 @@ export const MessagerieApp = () => {
                 const conversations = data.map(conversation => {
 
                 //    find  last element of array
-                const lastMessage = conversation.messages.reduce((a, b) => {
-                    return a.updatedAt > b.updatedAt ? a : b;
+                let lastMessage = null;
+                if (conversation.messages > 0) {
+                    
+                     lastMessage = conversation.messages.reduce((a, b) => {
+                        return a.updatedAt > b.updatedAt ? a : b;
+                    }
+                    );
                 }
-                );
                     return {
                         ...conversation,
-                        lastMessage
+                      lastMessage
                     }
                 }
                 );
