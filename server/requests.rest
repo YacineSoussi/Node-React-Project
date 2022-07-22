@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROY
 
 # body
 ###
-GET http://localhost:3000/users/1
+GET http://localhost:3000/users/4
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiYWxpbG91IiwiaWF0IjoxNjU3MTIyMjMyLCJleHAiOjE2ODg2Nzk4MzJ9.wcJAwEcMCm2askMzs_hVkkyEtGLoHfJE9WFZYB7MWjY
 ###
 POST http://localhost:3000/users
@@ -49,12 +49,13 @@ Content-Type: application/json
     "role": "admin"
 }
 ###
-PUT http://localhost:3000/users/3
+PUT http://localhost:3000/users/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMzA5ODUsImV4cCI6MTY4ODU4ODU4NX0.S3IFe_e0_RBuOk25uZfYEPxWi911s2tVEAoPltGVrpQ
 
 {
-    "password": "KkKOKOKO"
+    "lastName": "ROULIO",
+    "firstName": "CESAR"
 }
 
 ###

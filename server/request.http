@@ -22,12 +22,12 @@ GET http://localhost:3000/messages
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
 
 ###
-PUT http://localhost:3000/messages/1
+PUT http://localhost:3000/messages/175
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMzA5ODUsImV4cCI6MTY4ODU4ODU4NX0.S3IFe_e0_RBuOk25uZfYEPxWi911s2tVEAoPltGVrpQ
 
 {
-    "password": "KkKOKOKO"
+    "authorId": 4
 }
 ###
 
@@ -35,9 +35,9 @@ POST http://localhost:3000/messages
 Content-Type: application/json
 
 {   
-    "content": "Salut c'est Yacine 27 x5",
-    "authorId": 1,
-    "conversationId": 27
+    "content": "?",
+    "authorId": 2,
+    "conversationId": 28
 }
 
 ###
@@ -67,9 +67,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
 
 {
-    "lastMessageId": 2,
+    "lastMessageId": 1,
     "firstUserId": 4,
-    "secondUserId": 2
+    "secondUserId": 6
 }
 
 ###

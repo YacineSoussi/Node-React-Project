@@ -28,6 +28,10 @@ export const Header = () => {
         <Navbar expand="lg" variant={'light'} className='d-flex justify-content-between sticky-top'
                 style={{ background: '#fff', boxShadow: '0px 4px 19px 0px rgba(0,0,0,0.75)' }}>
         <Navbar.Brand>
+        <Link to={appRouteNames.MESSAGERIE}
+                style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
+            Messagerie <AnalyticIcon/>
+            </Link>
             <Link to={appRouteNames.ANALYTIC_SITE}
                 style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
             Analytic <AnalyticIcon/>

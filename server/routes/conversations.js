@@ -50,7 +50,7 @@ router.get("/myconversations/:userId", checkAuthentication, async (req, res) => 
             },
             include: [
                 { model: Participant, as: "participants" },
-                { model: Message, as: "messages" },
+                { model: Message, as: "messages" }
             ]
         });
         

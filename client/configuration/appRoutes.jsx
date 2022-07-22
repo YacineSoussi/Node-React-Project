@@ -5,6 +5,7 @@ import {UserLogout} from '../ui/views/components/UserLogout';
 import {UserAnalytic} from '../ui/views/components/UserAnalytic';
 import {RedirectToHome} from '../ui/views/components/RedirectToHome';
 import {LogsComponent} from '../ui/views/components/LogsComponent';
+import { MessagerieApp } from '../ui/views/components/messagerie/MessagerieApp';
 
 
 export const appRouteNames = {
@@ -13,7 +14,8 @@ export const appRouteNames = {
     LOGOUT_USER: '/logout',
     REGISTER_USER: '/register',
     ANALYTIC_SITE: '/analytic',
-    LOGS_SITE: '/logs'
+    LOGS_SITE: '/logs',
+    MESSAGERIE: '/messagerie'
 };
 
 export const appRoutes = [
@@ -22,5 +24,6 @@ export const appRoutes = [
     { path: appRouteNames.LOGIN_USER, component: UserLogin, exact: true },
     { path: appRouteNames.ANALYTIC_SITE, component: UserAnalytic, exact: true },
     { path: appRouteNames.LOGS_SITE, component:LogsComponent, exact: true },
+    { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
     { path: '*', component: RedirectToHome }
 ];  
