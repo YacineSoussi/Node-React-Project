@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-
+import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
 const Conversation = (props) => {
 
    const [destinataire, setDestinataire] = useState(null); 
@@ -23,7 +23,7 @@ const Conversation = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0'
+                'Authorization': `Bearer ${getAccessToken()}`
             }
         })
         .then(response => response.json())
