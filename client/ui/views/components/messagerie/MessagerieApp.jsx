@@ -11,6 +11,7 @@ import Modal from './Modal/Modal';
 
 export const MessagerieApp = () => {
 
+    const [authorLastMessage, setAuthorLastMessage] = useState(null); 
     const [conversations, setConversations] = useState([]);
     const [selectedConversationId, setSelectedConversationId] = useState(null);
     const [selectedConversation, setSelectedConversation] = useState(null);
@@ -25,6 +26,7 @@ export const MessagerieApp = () => {
     useEffect(() => {
         fetchConversations();
         setUser(getUserData());
+        
     }, [updatedConversation]);
 
         // use effect to fetch selected conversation
@@ -126,7 +128,7 @@ export const MessagerieApp = () => {
     const getParticipants = (conversations) => {
         
         conversations.forEach(conversation => {
-            // console.log(conversation.participants);
+            
             conversation.participants.forEach(participant => {
                 if (participant.userId !== user.id) {
                     participants.push(participant);
@@ -154,9 +156,9 @@ export const MessagerieApp = () => {
         <div className="container py-5 px-4 message-container">
         <div className="row rounded-lg overflow-hidden shadow d-flex message-row">
 
-            <App amis={amis} isOpen={isOpen} setIsOpen={setIsOpen} conversation={conversations} setConversations={setConversations} user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
+            <App authorLastMessage={authorLastMessage} setAuthorLastMessage={setAuthorLastMessage} amis={amis} isOpen={isOpen} setIsOpen={setIsOpen} conversation={conversations} setConversations={setConversations} user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
 
-            <Right setUpdatedConversation={setUpdatedConversation} conversation={selectedConversation} setConversation={setSelectedConversation} user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
+            <Right authorLastMessage={authorLastMessage} setAuthorLastMessage={setAuthorLastMessage} setUpdatedConversation={setUpdatedConversation} conversation={selectedConversation} setConversation={setSelectedConversation} user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
 
         </div>
 

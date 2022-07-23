@@ -20,7 +20,13 @@ const Modal = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            props.updateSelectedConversationId(data.id);
+            props.setIsOpen(false);
+
+            let conversations = props.conversations;
+            conversations.push(data);
+            props.scrollToBottom();
+          
         }
         ).catch(error => {
             console.error(error);
@@ -28,15 +34,8 @@ const Modal = (props) => {
         );
         return response;
     }
-    const handleClickNewConversation = (secondUserId) => {  
-        fetchPostConversation(secondUserId);
-        console.log(secondUserId);
-    }
-   const handleClick = (test) => {
-        console.log('Cliqué');
-        console.log(test);
-      }
-    
+   
+   
   return (
     <>
     <div className={styles.darkBG} onClick={() => props.setIsOpen(false)} />

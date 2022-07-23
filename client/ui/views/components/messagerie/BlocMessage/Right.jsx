@@ -38,6 +38,7 @@ const Right = (props) => {
             </div>
             {/* {props.messages.length === 0 ? null : <Input/>} */}
             <Input
+                authorLastMessage={props.authorLastMessage} setAuthorLastMessage={props.setAuthorLastMessage}
                 setUpdatedConversation={props.setUpdatedConversation}
                 conversation={props.conversation}
                 setConversation={props.setConversation}

@@ -55,13 +55,13 @@ const Input = (props) => {
             authorId: props.user.id,
             content: event.target[0].value
         }])
-       
+        
     }
 
     return (
         <form onSubmit={fetchNewMessage} action="#" className="bg-light mb-auto form-input">
             <div className="input-group">
-                <input type="text" placeholder="Type a message"
+                <input type="text" placeholder="Envoyer un message"
                     aria-describedby="button-addon2"
                     className="form-control rounded-0 border-0 py-4 bg-light"/>
                 <div className="input-group-append">

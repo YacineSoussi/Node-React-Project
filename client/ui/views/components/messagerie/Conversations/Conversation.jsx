@@ -5,12 +5,12 @@ const Conversation = (props) => {
 
    const [destinataire, setDestinataire] = useState(null); 
    const otherUser = props.conversation.participants.filter(user => user.userId !== props.user.id)[0];
-   const [authorLastMessage, setAuthorLastMessage] = useState(null);
+   
 
     useEffect(() => {
         fetchUser();
         if (props.conversation.lastMessage) {
-            setAuthorLastMessage(props.conversation.lastMessage.authorId);
+            props.setAuthorLastMessage(props.conversation.lastMessage.authorId);
         }
         
     }, []);
@@ -67,7 +67,7 @@ const Conversation = (props) => {
                     </div>
                     <p className="font-italic mb-0 text-small">
                         
-                        {authorLastMessage === props.user.id ? 
+                        {props.authorLastMessage === props.user.id ? 
                         <span className="font-weight-bold font-italic">Moi : </span>
                         : destinataire ? <span className='font-weight-bold'>{destinataire.firstName} {destinataire.lastName} : </span> 
                         : null}

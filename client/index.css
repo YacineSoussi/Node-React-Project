@@ -40,7 +40,7 @@ code {
 }
 
 .App .app-col-message {
-    overflow: auto;
+    overflow-y: scroll;
     height: 100%;
 }
 
