@@ -43,10 +43,10 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "email": "Amin@nairi.com",
+    "email": "Slimane@Symfony.com",
     "password": "azertyuiop",
-    "firstName": "Amin",
-    "lastName": "Nairi",
+    "firstName": "Slimane",
+    "lastName": "Symfony",
     "role": "admin"
 }
 ###

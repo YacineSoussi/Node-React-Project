@@ -6,6 +6,8 @@ import App from './Conversations/App';
 import Blank from './BlocMessage/Blank';
 import React from 'react';
 import Right from './BlocMessage/Right';
+import Modal from './Modal/Modal';
+
 
 export const MessagerieApp = () => {
 
@@ -15,12 +17,22 @@ export const MessagerieApp = () => {
     const [Messages, setMessages] = useState([]);
     const [user, setUser] = useState(null);
     const [updatedConversation, setUpdatedConversation] = useState(null);
+    const [amis, setAmis] = useState([]);
+
+    const [isOpen, setIsOpen] = useState(false);
 
     // use effect to fetch conversations
     useEffect(() => {
         fetchConversations();
         setUser(getUserData());
     }, [updatedConversation]);
+
+        // use effect to fetch selected conversation
+    useEffect(() => {
+            if (selectedConversationId) {
+                fetchSelectedConversation();
+            }
+        }, [selectedConversationId]);
 
     const fetchConversations = async () => {
         const response = await fetch(`http://localhost:3000/myconversations/${getUserData().id}`, {
@@ -44,7 +56,6 @@ export const MessagerieApp = () => {
                     }
                     );
                 }
-                console.log(lastMessage);
                     return {
                         ...conversation,
                       lastMessage
@@ -65,13 +76,6 @@ export const MessagerieApp = () => {
         return response;
     }
 
-    // use effect to fetch selected conversation
-    useEffect(() => {
-        if (selectedConversationId) {
-            fetchSelectedConversation();
-        }
-    }, [selectedConversationId]);
-
     const fetchSelectedConversation = async () => {
         const response = await fetch(`http://localhost:3000/conversations/${selectedConversationId}`, {
             method: 'GET',
@@ -84,7 +88,7 @@ export const MessagerieApp = () => {
         .then(data => {
                 setSelectedConversation(data);
                 setMessages(data.messages);
-                // console.log(Messages);
+               
             })
         .catch(error => {
                 console.error(error);
@@ -93,28 +97,70 @@ export const MessagerieApp = () => {
         return response;
     }
 
-
     const updateSelectedConversationId = (id) => {
         setSelectedConversationId(id);
     }
 
+    const fetchUsers = async () => {
+        const response = await fetch(`http://localhost:3000/users`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setAmis(data);
+            }
+            ).catch(error => {
+                console.error(error);
+            }
+            );
+        return response;
+    }
+
+    // get participants of all convsersations
+    const participants = [];
+    
+    const getParticipants = (conversations) => {
+        
+        conversations.forEach(conversation => {
+            // console.log(conversation.participants);
+            conversation.participants.forEach(participant => {
+                if (participant.userId !== user.id) {
+                    participants.push(participant);
+                }
+            }
+            );
+        }
+        );
+        
+         return participants;
+         
+    }
+    useEffect(() => {
+        fetchUsers();
+        
+    //    const result = getParticipants(conversations);
+    //     setAmis(result);
+        
+    }, [conversations]);
+   
+
+    
 
     return (
         <div className="container py-5 px-4 message-container">
         <div className="row rounded-lg overflow-hidden shadow d-flex message-row">
 
-            <App conversation={conversations} setConversations={setConversations} user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
-            {/* <Switch>
-                <Route path="/messagerie" component={Blank} exact />
-                <Route path="/conversation/:id"
-                    render={props => <Right {...props} key={props.match.params.id}></Right> }
-                />
-            </Switch> */}
-            <Right setUpdatedConversation={setUpdatedConversation} conversation={selectedConversation} setConversation={setSelectedConversation} user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
+            <App amis={amis} isOpen={isOpen} setIsOpen={setIsOpen} conversation={conversations} setConversations={setConversations} user={user} selectedConversationId={selectedConversationId} updateSelectedConversationId={updateSelectedConversationId} conversations={conversations} />
 
+            <Right setUpdatedConversation={setUpdatedConversation} conversation={selectedConversation} setConversation={setSelectedConversation} user={user} messages={Messages} setMessages={setMessages} selectedConversationId={selectedConversationId} />
 
         </div>
 
+       
     </div>
     );
 };

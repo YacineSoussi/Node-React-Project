@@ -55,7 +55,7 @@ const Input = (props) => {
             authorId: props.user.id,
             content: event.target[0].value
         }])
-        console.log(event.target[0].value);
+       
     }
 
     return (

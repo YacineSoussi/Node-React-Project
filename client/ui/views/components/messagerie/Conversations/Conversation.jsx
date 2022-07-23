@@ -12,11 +12,9 @@ const Conversation = (props) => {
         if (props.conversation.lastMessage) {
             setAuthorLastMessage(props.conversation.lastMessage.authorId);
         }
-        // console.log(props.conversation);
+        
     }, []);
     
-    
-
     const fetchUser = async () => {
         const response = await fetch(`http://localhost:3000/users/${otherUser.userId}`, {
             method: 'GET',
@@ -37,6 +35,7 @@ const Conversation = (props) => {
         return response;
     }
    
+    // Gestion de la date
     const ddate = props.conversation.updatedAt;
 
     const year = ddate.slice(0, 4);
@@ -46,11 +45,12 @@ const Conversation = (props) => {
     const minute = ddate.slice(14, 16);
     const date = day + "-" + month + "-" + year + " " +  hour + ":" + minute;
 
-
    const handleClick = () => {
         props.updateSelectedConversationId(props.conversation.id);
       }
       
+   
+
     return (
         <div onClick={handleClick} className="list-group-item list-group-item-action rounded-0">
             <div className="media">
