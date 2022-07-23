@@ -39,6 +39,7 @@ const Input = (props) => {
             };
             props.setConversation(conversationMAJ);
             props.setUpdatedConversation(conversationMAJ);
+            props.setAuthorLastMessage(userId);
         }
         ).catch(error => {
             console.error(error);
