@@ -1,7 +1,7 @@
 import {Route, Switch} from 'react-router-dom';
 import { getAccessToken, getUserData } from '../../../../adapters/CookiesAppStorage';
 import { useEffect, useState } from 'react';
-
+import {useMustBeAuthenticateGuard} from '../../../common/Hooks/useMustBeAuthenticateGuard';
 import App from './Conversations/App';
 import Blank from './BlocMessage/Blank';
 import React from 'react';
@@ -11,6 +11,7 @@ import Modal from './Modal/Modal';
 
 export const MessagerieApp = () => {
 
+    useMustBeAuthenticateGuard();
     const [authorLastMessage, setAuthorLastMessage] = useState(null); 
     const [conversations, setConversations] = useState([]);
     const [selectedConversationId, setSelectedConversationId] = useState(null);
