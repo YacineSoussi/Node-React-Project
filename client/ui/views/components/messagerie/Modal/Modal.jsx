@@ -25,7 +25,7 @@ const Modal = (props) => {
 
             let conversations = props.conversations;
             conversations.push(data);
-            props.scrollToBottom();
+            // props.scrollToBottom();
           
         }
         ).catch(error => {

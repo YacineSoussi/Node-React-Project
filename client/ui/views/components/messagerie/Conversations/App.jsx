@@ -6,17 +6,17 @@ import { useRef, useEffect } from 'react';
 
 const App = (props) => {
     
-    const conversationEndRef = useRef(null);
+    // const conversationEndRef = useRef(null);
 
-    // Permet de scroller automatiquement vers le bas
-    const scrollToBottom = () => {
-        conversationEndRef.current?.scrollIntoView({behavior: 'smooth'});
-    }
+    // // Permet de scroller automatiquement vers le bas
+    // const scrollToBottom = () => {
+    //     conversationEndRef.current?.scrollIntoView({behavior: 'smooth'});
+    // }
 
-    useEffect(() => {
-        scrollToBottom();
-    }
-    ,[props.conversations]);
+    // useEffect(() => {
+    //     scrollToBottom();
+    // }
+    // ,[props.conversations]);
    
     return (
                     <>
@@ -29,7 +29,7 @@ const App = (props) => {
                     onClick={() => props.setIsOpen(true)} 
                     style={{ fontSize: "x-large", cursor: "pointer"}}/>
         
-                        {props.isOpen && <Modal scrollToBottom={scrollToBottom} conversations={props.conversations} updateSelectedConversationId={ props.updateSelectedConversationId } user={props.user} amis={props.amis} setIsOpen={props.setIsOpen} />}
+                        {props.isOpen && <Modal  conversations={props.conversations} updateSelectedConversationId={ props.updateSelectedConversationId } user={props.user} amis={props.amis} setIsOpen={props.setIsOpen} />}
                 </div>
                 <div className="messages-box">
                     <div className="list-group rounded-0">
@@ -40,7 +40,7 @@ const App = (props) => {
                     </div>
                 </div>
             </div>
-                    <div ref={conversationEndRef} />
+                    {/* <div ref={conversationEndRef} /> */}
         </div>
         </>
     );

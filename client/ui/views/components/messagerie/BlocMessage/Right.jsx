@@ -9,13 +9,15 @@ const Right = (props) => {
 
     // Permet de scroller automatiquement vers le bas
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        console.log("test")
     }
 
     // Au chargement de la page, on scroll automatiquement vers le bas. Cela permet de voir le dernier message.
     // Il réagit au changement de state messages pour que le scroll se fasse automatiquement vers le bas.
     useEffect(() => {
         scrollToBottom();
+       
     }
     , [props.messages]);
 
