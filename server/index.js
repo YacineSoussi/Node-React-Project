@@ -8,6 +8,7 @@ const app = express();
 const cors = require("cors");
 const compression =  require("compression");
 const FriendshipRouter = require('./routes/friendship');
+const SignalRouter = require('./routes/signal');
 
 
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use(SecurityRouter);
 app.use(UserRouter);
 app.use(Logs);
 app.use('/friendship', FriendshipRouter);
+app.use('/signal', SignalRouter);
 
 app.listen(port, () => {
     Logger.info("Server is running on port " + port);
