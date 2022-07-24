@@ -29,12 +29,29 @@ const App = (props) => {
                     onClick={() => props.setIsOpen(true)} 
                     style={{ fontSize: "x-large", cursor: "pointer"}}/>
         
-                        {props.isOpen && <Modal  conversations={props.conversations} updateSelectedConversationId={ props.updateSelectedConversationId } user={props.user} amis={props.amis} setIsOpen={props.setIsOpen} />}
+                        {props.isOpen && <Modal  
+                        conversations={props.conversations} 
+                        updateSelectedConversationId={ props.updateSelectedConversationId } 
+                        user={props.user} 
+                        amis={props.amis} 
+                        setIsOpen={props.setIsOpen}
+                        conversation={props.conversation}
+                        getParticipants={props.getParticipants}
+                        participants={props.participants}
+                        />}
                 </div>
                 <div className="messages-box">
                     <div className="list-group rounded-0">
                         {props.conversations.map(conversation => {
-                            return <Conversation authorLastMessage={props.authorLastMessage} setAuthorLastMessage={props.setAuthorLastMessage} user={props.user} updateSelectedConversationId={ props.updateSelectedConversationId } key={conversation.id} conversation={conversation} />
+                            return <Conversation 
+                            selectedConversation={props.selectedConversation}
+                            selectedConversationId={props.selectedConversationId}
+                            authorLastMessage={props.authorLastMessage} 
+                            setAuthorLastMessage={props.setAuthorLastMessage} 
+                            user={props.user} 
+                            updateSelectedConversationId={ props.updateSelectedConversationId } 
+                            key={conversation.id} 
+                            conversation={conversation} />
                         }
                         )}
                     </div>

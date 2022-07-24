@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
 const Conversation = (props) => {
 
+    // console.log(props.conversation)
    const [destinataire, setDestinataire] = useState(null); 
    const otherUser = props.conversation.participants.filter(user => user.userId !== props.user.id)[0];
    
@@ -47,6 +48,7 @@ const Conversation = (props) => {
 
    const handleClick = () => {
         props.updateSelectedConversationId(props.conversation.id);
+        // console.log(props.conversation.id)
       }
       
    

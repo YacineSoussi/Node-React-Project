@@ -25,8 +25,7 @@ const Modal = (props) => {
 
             let conversations = props.conversations;
             conversations.push(data);
-            // props.scrollToBottom();
-          
+           
         }
         ).catch(error => {
             console.error(error);
@@ -48,14 +47,15 @@ const Modal = (props) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className={styles.modalContent}>
-    
-            {props.amis.map((ami, key) => {
+
+            {props.amis ? props.amis.map((ami, key) => {
                 return (
                     <>
                     <div onClick={() => fetchPostConversation(ami.id)} key={key} style={{cursor: "pointer"}}>{ami.lastName} {ami.firstName}</div>
                     </>
                 );
-            })}
+            }) : "Ooups vous n'avez pas d'amis"}
+            
           </div>
           {/* <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>

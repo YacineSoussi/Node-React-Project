@@ -1,8 +1,21 @@
 import React from 'react';
 import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
+import { useEffect, useRef } from 'react';
 
 const Input = (props) => {
     // fetch new message
+    
+    const Submit = (e) => {
+                
+      
+        if(props.messageUpdate) {
+            fetchUpdateMessage(e);
+            
+        } else {
+            fetchNewMessage(e);
+        }
+    }
+
     const fetchNewMessage = async (e) => {
         e.preventDefault();
         const message = e.target[0].value;
@@ -48,21 +61,80 @@ const Input = (props) => {
         return response;
     }
 
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const messages = props.messages;
-        props.setMessages([...messages, {
-            authorId: props.user.id,
-            content: event.target[0].value
-        }])
+    const fetchUpdateMessage = async (e) => {
         
+        const message = e.target[0].value;
+
+        const response = await fetch(`http://localhost:3000/messages/${props.messageUpdate.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`
+            },
+            body: JSON.stringify({
+                "content": message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            // Ici on cherche le message qu'on est en train de modifier pour le mettre à jour 
+            const messages = props.messages;
+            const index = messages.findIndex(message => message.id === data.id);
+            
+            messages[index] = data;
+            props.setMessages(messages);
+
+            e.target[0].value = '';
+
+            
+            // On regarde si le message qu'on modifie est le dernier message de la conversation pour le mettre à jour
+            let lastMsg = props.conversation.lastMessage;
+            
+            if(data.id === props.conversation.lastMessageId) {
+                lastMsg = data;
+            }
+            // On modifie ici la conversation active avec le nouveau message afin de modifier le state pour que le coté gauche réagisse
+            const conversation = props.conversation;
+            const conversationMAJ = {
+                lastMessage: lastMsg,
+                messages: [...conversation.messages],
+                id: conversation.id,
+                updatedAt: data.updatedAt,
+                lastMessageId: lastMsg.id,
+                participants: conversation.participants,
+                createdAt: data.createdAt
+            };
+    
+            // Ici on cherche la conversation qu'on a mis a jour et on la met a jour 
+            const indexConversation = props.conversations.findIndex(conversation => conversation.id === conversationMAJ.id);
+            props.conversations[indexConversation] = conversationMAJ;
+           
+            // On modifie le state de la conversation active pour changer l'affichage du dernier msg
+            props.setConversation(conversationMAJ);
+            // Pour pouvoir indiquer qu'actuellement il n'y a pas de message a modifier ou supprimer
+            props.setMessageUpdate(null);
+        }
+        ).catch(error => {
+            console.error(error);
+        }
+        );
+        return response;
     }
+    
+    const updateMessageRef = useRef(null);
+        
+        useEffect(() => {
+            if (props.messageUpdate) {
+            updateMessageRef.current.value = props.messageUpdate.content;
+            }
+            
+    }, [props.messageUpdate]);
 
     return (
-        <form onSubmit={fetchNewMessage} action="#" className="bg-light mb-auto form-input">
+        <form onSubmit={Submit} action="#" className="bg-light mb-auto form-input">
             <div className="input-group">
-                <input type="text" placeholder="Envoyer un message"
+                <input ref={updateMessageRef} type="text" placeholder="Envoyer un message"
                     aria-describedby="button-addon2"
                     className="form-control rounded-0 border-0 py-4 bg-light"/>
                 <div className="input-group-append">

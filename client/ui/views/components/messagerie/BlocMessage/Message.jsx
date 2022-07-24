@@ -16,7 +16,7 @@ const Message = (props) => {
     }
    
     return (
-        <div className={`media w-50 mb-3 ${props.message.authorId === props.user.id ? `ms-auto` : ``}`} >
+        <div onClick={() => props.handleClick(props.message)} className={`media w-50 mb-3 ${props.message.authorId === props.user.id ? `ms-auto` : ``}`} >
            
             <div className="media-body ml-3">
                 <div className={`rounded py-2 px-3 mb-2 ${props.message.authorId === props.user.id ? 'bg-primary' : 'bg-light'}`}>
