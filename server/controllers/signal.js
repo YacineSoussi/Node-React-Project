@@ -18,7 +18,7 @@ exports.signalRequest = asyncHandler(async (req, res, next) => {
 
 	const relationAlreadyExists = await Signal.findOne({
 		where: {
-			user_id: req.user.id,
+			user_id_requester: req.user.id,
 			user_id_to_signal: req.body.user_id_to_signal,
 		},
 	});
@@ -26,7 +26,7 @@ exports.signalRequest = asyncHandler(async (req, res, next) => {
 		return next(new ErrorResponse('Already requested.', 422));
 
 	const data = {
-		user_id: req.user.id,
+		user_id_requester: req.user.id,
 		user_id_to_signal: req.body.user_id_to_signal,
 		reason: req.body.reason,
 		comment: req.body.comment,
