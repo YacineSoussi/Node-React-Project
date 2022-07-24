@@ -36,6 +36,10 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    token: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
 }, {
     sequelize: connection,
     modelName: "user",
