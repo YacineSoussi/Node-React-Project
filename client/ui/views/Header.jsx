@@ -9,6 +9,7 @@ import {LogoutIcon} from '../common/icons/LogoutIcon';
 import {AnalyticIcon} from '../common/icons/AnalyticIcon';
 import {LoginIcon} from '../common/icons/LoginIcon';
 import {LogIcon} from '../common/icons/LogIcon';
+import {MessagingIcon} from '../common/icons/MessagingIcon';
 import Button from 'react-bootstrap/Button';
 
 export const Header = () => {
@@ -30,7 +31,7 @@ export const Header = () => {
         <Navbar.Brand>
         <Link to={appRouteNames.MESSAGERIE}
                 style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
-            Messagerie <AnalyticIcon/>
+            Messagerie <MessagingIcon/> 
             </Link>
             <Link to={appRouteNames.ANALYTIC_SITE}
                 style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>

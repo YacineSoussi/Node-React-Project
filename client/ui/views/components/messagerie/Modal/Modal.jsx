@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
-import { RiCloseLine } from "react-icons/ri";
+import {RiCloseLine}  from 'react-icons/ri';
 import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
 const Modal = (props) => {
 
