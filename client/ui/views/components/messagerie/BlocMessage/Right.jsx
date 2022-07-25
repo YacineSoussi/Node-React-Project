@@ -37,6 +37,7 @@ const Right = (props) => {
                 }>
                     
                 {props.messages ? props.messages.map((message, key) => {
+                    // console.log(message);
                     return <Message 
                     handleClick={handleClick}
                     user={props.user} 

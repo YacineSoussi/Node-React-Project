@@ -74,7 +74,8 @@ const Input = (props) => {
                 'Authorization': `Bearer ${getAccessToken()}`
             },
             body: JSON.stringify({
-                "content": message
+                "content": message,
+                "state": "updated"
             })
         })
         .then(response => response.json())
@@ -131,6 +132,7 @@ const Input = (props) => {
         useEffect(() => {
             if (props.messageUpdate) {
             updateMessageRef.current.value = props.messageUpdate.content;
+            console.log(props.messageUpdate);
             }
             
     }, [props.messageUpdate]);

@@ -109,6 +109,7 @@ export const MessagerieApp = () => {
                     lastMessage
                 }
                 setSelectedConversation(newConversation);
+                
                 setMessages(data.messages);
                
             })
@@ -162,7 +163,7 @@ export const MessagerieApp = () => {
         fetchUsers();
     }, [conversations]);
 
-
+    // console.log(Messages)
     return (
         <div className="container py-5 px-4 message-container">
         <div className="row rounded-lg overflow-hidden shadow d-flex message-row">
