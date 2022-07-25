@@ -125,7 +125,7 @@ router.get("/conversations/:id", checkAuthentication, async (req, res) => {
     try {
         const result = await Conversation.findByPk(req.params.id, {
             include: [
-                { model: Message, as: "messages", attributes: ["id", "content", "createdAt", "authorId"] },
+                { model: Message, as: "messages"},
                 { model: Participant, as: "participants" }
             ]
         });
