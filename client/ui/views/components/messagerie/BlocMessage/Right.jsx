@@ -24,6 +24,11 @@ const Right = (props) => {
     const handleClick = (message) => {
         setMessageUpdate(message);
     }
+    // Méthode qui va permettre de supprimer un message dans le composant input
+    const handleDelete = (e, message) => {
+        message.state = "delete";
+        setMessageUpdate(message);
+    }
     return (
         <div id="test" className="col-7 px-0">
             <div 
@@ -40,6 +45,7 @@ const Right = (props) => {
                     // console.log(message);
                     return <Message 
                     handleClick={handleClick}
+                    handleDelete={handleDelete}
                     user={props.user} 
                     key={key} 
                     message={message} 

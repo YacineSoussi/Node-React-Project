@@ -51,18 +51,24 @@ export const MessagerieApp = () => {
         })
             .then(response => response.json())
             .then(data => {
+               
+               
                 const conversations = data.map(conversation => {
-
-                //    find  last element of array
+                    // Trier la conversation par createdAt
+                    const sortedConversation = conversation.messages.sort((a, b) => {
+                        return new Date(a.createdAt) - new Date(b.createdAt);
+                    });
+                   
+                    conversation.messages = sortedConversation;
+               
                 let lastMessage = null;
                 
                 if (conversation.messages.length > 0) {
-                    
-                     lastMessage = conversation.messages.reduce((a, b) => {
-                        return a.updatedAt > b.updatedAt ? a : b;
+                    // On récupère ici le dernier elemement du tableau pour le mettre dans lastMessage
+                    lastMessage = conversation.messages[conversation.messages.length-1];
                     }
-                    );
-                }
+                    
+                
                 return {
                     ...conversation,
                     lastMessage
@@ -95,21 +101,25 @@ export const MessagerieApp = () => {
         })
         .then(response => response.json())
         .then(data => {
+            // On trie les messages par date de creation pour eviter de changer l'ordre des messages quand ils sont modifié
+            const sortedConversation = data.messages.sort((a, b) => {
+                return new Date(a.createdAt) - new Date(b.createdAt);
+            });
+           
+            data.messages = sortedConversation;
+            
             let lastMessage = null;
                 
                 if (data.messages.length > 0) {
                     
-                     lastMessage = data.messages.reduce((a, b) => {
-                        return a.updatedAt > b.updatedAt ? a : b;
-                    }
-                    );
+                     lastMessage = data.messages[data.messages.length-1];
+                  
                 }
                 const newConversation = {
                     ...data,
                     lastMessage
                 }
                 setSelectedConversation(newConversation);
-                
                 setMessages(data.messages);
                
             })

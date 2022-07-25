@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoTrash } from "react-icons/io5";
 
 const Message = (props) => {
     
@@ -18,17 +19,28 @@ const Message = (props) => {
     }
 
     return (
-        <div onClick={() => props.handleClick(props.message)} className={`media w-50 mb-3 ${props.message.authorId === props.user.id ? `ms-auto` : ``}`} >
+        <div  className={`media w-50 mb-3 ${props.message.authorId === props.user.id ? `ms-auto` : ``}`} >
            
             <div className="media-body ml-3">
-                <div className={`rounded py-2 px-3 mb-2 ${props.message.authorId === props.user.id ? 'bg-primary' : 'bg-light'}`}>     
+                <div className="d-flex align-items-center">
+                   
+                  
+
+                <div onClick={() => props.handleClick(props.message)} className={`w-100 rounded py-2 px-3 mb-2 ${props.message.authorId === props.user.id ? 'bg-primary' : 'bg-light'}`}>     
                     <p className={`text-small mb-0 ${props.message.authorId === props.user.id ? 'text-white' : 'text-muted'}`}>
                         
                         {props.message.content}
                         
                         </p>
                 </div>
-                <p className="small text-muted"> {props.message.state ===  "updated" ?<> <b style={{textDecoration: "underline" }}> Modifié le </b>:  </>: null} {date}</p>
+                </div>
+                <p className="small text-muted"> 
+                
+                {props.message.state ===  "updated" ?<> <b style={{textDecoration: "underline" }}> Modifié le </b>:  </>: null} {date}  {props.message.authorId === props.user.id  && props.message.state !== "delete" ? 
+                    <IoTrash 
+                   style={{cursor: "pointer"}} 
+                   className="m-1 float-right mr-2 text-danger" 
+                   onClick={(e) => props.handleDelete(e, props.message)}/> : null}</p> 
             </div>
         </div>
     );

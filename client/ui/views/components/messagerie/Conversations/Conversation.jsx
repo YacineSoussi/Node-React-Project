@@ -53,7 +53,7 @@ const Conversation = (props) => {
         props.updateSelectedConversationId(props.conversation.id);
       }
       
-   
+//    console.log(props.conversation)
 
     return (
         <div onClick={handleClick} className="list-group-item list-group-item-action rounded-0">

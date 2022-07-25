@@ -6,7 +6,7 @@ const Input = (props) => {
     // fetch new message
     
     const Submit = (e) => {
-                
+                console.log(e.target[0].value);
         e.preventDefault();
         if(props.messageUpdate) {
             fetchUpdateMessage(e);
@@ -65,8 +65,8 @@ const Input = (props) => {
     // Permet de mettre à jour un message
     const fetchUpdateMessage = async (e) => {
         
+        
         const message = e.target[0].value;
-
         const response = await fetch(`http://localhost:3000/messages/${props.messageUpdate.id}`, {
             method: 'PUT',
             headers: {
@@ -124,15 +124,76 @@ const Input = (props) => {
         );
         return response;
     }
+
+    // Permet de supprimer un message
+    const fetchDeleteMessage = async () => {
+
+        const response = await fetch(`http://localhost:3000/messages/${props.messageUpdate.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`
+            },
+            body: JSON.stringify({
+                "content": "Ce message a été supprimé",
+                "state": "delete"
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            // Ici on cherche le message qu'on est en train de modifier pour le mettre à jour 
+            const messages = props.messages;
+            const index = messages.findIndex(message => message.id === data.id);
+            
+            messages[index] = data;
+            props.setMessages(messages);
+
+            
+            // On regarde si le message qu'on modifie est le dernier message de la conversation pour le mettre à jour
+            let lastMsg = props.conversation.lastMessage;
+            
+            if(data.id === props.conversation.lastMessageId) {
+                lastMsg = data;
+            }
+            // On modifie ici la conversation active avec le nouveau message afin de modifier le state pour que le coté gauche réagisse
+            const conversation = props.conversation;
+            const conversationMAJ = {
+                lastMessage: lastMsg,
+                messages: [...conversation.messages],
+                id: conversation.id,
+                updatedAt: data.updatedAt,
+                lastMessageId: lastMsg.id,
+                participants: conversation.participants,
+                createdAt: data.createdAt
+            };
+    
+            // Ici on cherche la conversation qu'on a mis a jour et on la met a jour 
+            const indexConversation = props.conversations.findIndex(conversation => conversation.id === conversationMAJ.id);
+            props.conversations[indexConversation] = conversationMAJ;
+           
+            // On modifie le state de la conversation active pour changer l'affichage du dernier msg
+            props.setConversation(conversationMAJ);
+            // Pour pouvoir indiquer qu'actuellement il n'y a pas de message a modifier ou supprimer
+            props.setMessageUpdate(null);
+        }
+        ).catch(error => {
+            console.error(error);
+        }
+        );
+        return response;
+     }
     
     // Ref qui va permettre de scroll automatiquement au dernier message
     const updateMessageRef = useRef(null);
         
     // A chaque fois qu'un message est cliqué et que le state est modifié, on rempli l'input avec le message
         useEffect(() => {
-            if (props.messageUpdate) {
+            if (props.messageUpdate && props.messageUpdate.state !== undefined && props.messageUpdate.state !== "delete") {
             updateMessageRef.current.value = props.messageUpdate.content;
-            console.log(props.messageUpdate);
+            } else if(props.messageUpdate && props.messageUpdate.state === "delete") {
+                // console.log(props.messageUpdate)
+                fetchDeleteMessage();
             }
             
     }, [props.messageUpdate]);
