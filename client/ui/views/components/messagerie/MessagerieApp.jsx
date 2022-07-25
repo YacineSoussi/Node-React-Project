@@ -13,7 +13,6 @@ export const MessagerieApp = () => {
 
     useMustBeAuthenticateGuard();
 
-    
     const [authorLastMessage, setAuthorLastMessage] = useState(null); 
     const [conversations, setConversations] = useState([]);
     const [selectedConversationId, setSelectedConversationId] = useState(null);
@@ -33,7 +32,7 @@ export const MessagerieApp = () => {
         
     }, [updatedConversation]);
 
-        // use effect to fetch selected conversation
+        // On met a jour la conversation selectionnée dès le chargement de la page
     useEffect(() => {
         
             if (selectedConversationId) {
@@ -41,6 +40,7 @@ export const MessagerieApp = () => {
             }
         }, [selectedConversationId]);
 
+        // Récupère les conversations de l'utilisateur connecté
     const fetchConversations = async () => {
         const response = await fetch(`http://localhost:3000/myconversations/${getUserData().id}`, {
             method: 'GET',
@@ -84,7 +84,7 @@ export const MessagerieApp = () => {
 
         return response;
     }
-
+        // Récupère la conversation selectionnée
     const fetchSelectedConversation = async () => {
         const response = await fetch(`http://localhost:3000/conversations/${selectedConversationId}`, {
             method: 'GET',
@@ -119,10 +119,7 @@ export const MessagerieApp = () => {
         return response;
     }
 
-    const updateSelectedConversationId = (id) => {
-        setSelectedConversationId(id);
-    }
-
+    // Permet de récuperer la liste d'amis (users en attendant d'avoir la route pour les amis)
     const fetchUsers = async () => {
         const response = await fetch(`http://localhost:3000/users`, {
             method: 'GET',
@@ -142,9 +139,8 @@ export const MessagerieApp = () => {
         return response;
     }
 
-    // get participants of all convsersations
-    const participants = [];
-    
+    // Permet de récuperer tous les participants qui ont une conversation avec l'user connecté
+    const participants = [];  
     const getParticipants = (conversations) => {
         
         conversations.forEach(conversation => {
@@ -161,6 +157,7 @@ export const MessagerieApp = () => {
          return participants;
          
     }
+    // Met à jour la liste d'amis dès qu'une conversations est modifiée/crée
     useEffect(() => {
         fetchUsers();
     }, [conversations]);

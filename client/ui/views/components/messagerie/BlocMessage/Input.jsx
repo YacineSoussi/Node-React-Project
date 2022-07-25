@@ -16,6 +16,7 @@ const Input = (props) => {
         }
     }
 
+    // Permet de post un nouveau message
     const fetchNewMessage = async (e) => {
         e.preventDefault();
         const message = e.target[0].value;
@@ -61,6 +62,7 @@ const Input = (props) => {
         return response;
     }
 
+    // Permet de mettre à jour un message
     const fetchUpdateMessage = async (e) => {
         
         const message = e.target[0].value;
@@ -122,8 +124,10 @@ const Input = (props) => {
         return response;
     }
     
+    // Ref qui va permettre de scroll automatiquement au dernier message
     const updateMessageRef = useRef(null);
         
+    // A chaque fois qu'un message est cliqué et que le state est modifié, on rempli l'input avec le message
         useEffect(() => {
             if (props.messageUpdate) {
             updateMessageRef.current.value = props.messageUpdate.content;

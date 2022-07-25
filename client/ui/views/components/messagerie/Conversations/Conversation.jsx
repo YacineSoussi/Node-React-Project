@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
 const Conversation = (props) => {
 
-    // console.log(props.conversation)
    const [destinataire, setDestinataire] = useState(null); 
    const otherUser = props.conversation.participants.filter(user => user.userId !== props.user.id)[0];
    
 
+    //  Au chargement du composant on récupère le destinataire & met a jour l'auteur du dernier message
     useEffect(() => {
         fetchUser();
         if (props.conversation.lastMessage) {
@@ -16,6 +16,7 @@ const Conversation = (props) => {
         
     }, []);
     
+    // On récupère le destinataire de la conversation
     const fetchUser = async () => {
         const response = await fetch(`http://localhost:3000/users/${otherUser.userId}`, {
             method: 'GET',
@@ -46,9 +47,9 @@ const Conversation = (props) => {
     const minute = ddate.slice(14, 16);
     const date = day + "-" + month + "-" + year + " " +  hour + ":" + minute;
 
+    // Dès qu'on clique sur une conversation, on met à jour le state de la conversation active
    const handleClick = () => {
         props.updateSelectedConversationId(props.conversation.id);
-        // console.log(props.conversation.id)
       }
       
    

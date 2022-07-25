@@ -4,8 +4,9 @@ import { RiCloseLine } from "react-icons/ri";
 import { getAccessToken } from '../../../../../adapters/CookiesAppStorage';
 const Modal = (props) => {
 
-       //   fetch post a new conversation
-       const fetchPostConversation = async (secondUserId) => {
+       //   Permet de créer une nouvelle conversation 
+
+  const fetchPostConversation = async (secondUserId) => {
         const response = await fetch(`http://localhost:3000/conversations`, {
             method: 'POST',
             headers: {
@@ -33,8 +34,7 @@ const Modal = (props) => {
         );
         return response;
     }
-   
-   
+
   return (
     <>
     <div className={styles.darkBG} onClick={() => props.setIsOpen(false)} />

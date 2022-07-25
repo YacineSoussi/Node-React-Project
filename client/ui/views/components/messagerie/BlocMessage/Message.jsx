@@ -2,6 +2,7 @@ import React from 'react';
 
 const Message = (props) => {
     
+    // Gestion des dates
     const ddate = props.message.createdAt;
     let date = new Date(ddate);
     if (ddate) { 

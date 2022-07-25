@@ -20,9 +20,9 @@ const Right = (props) => {
     }
     , [props.messages]);
 
+    // Méthode qui va permettre de modifier un message dans le composant input
     const handleClick = (message) => {
         setMessageUpdate(message);
-        
     }
     return (
         <div id="test" className="col-7 px-0">
@@ -48,7 +48,7 @@ const Right = (props) => {
                 }) : null}
                 <div ref={messagesEndRef} />
             </div>
-            {/* {props.messages.length === 0 ? null : <Input/>} */}
+            
             <Input
                 authorLastMessage={props.authorLastMessage} 
                 setAuthorLastMessage={props.setAuthorLastMessage}

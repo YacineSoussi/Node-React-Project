@@ -6,18 +6,6 @@ import { useRef, useEffect } from 'react';
 
 const App = (props) => {
     
-    // const conversationEndRef = useRef(null);
-
-    // // Permet de scroller automatiquement vers le bas
-    // const scrollToBottom = () => {
-    //     conversationEndRef.current?.scrollIntoView({behavior: 'smooth'});
-    // }
-
-    // useEffect(() => {
-    //     scrollToBottom();
-    // }
-    // ,[props.conversations]);
-   
     return (
                     <>
         <div id="test2" className="col-5 px-0 app-col-message" >
@@ -57,7 +45,7 @@ const App = (props) => {
                     </div>
                 </div>
             </div>
-                    {/* <div ref={conversationEndRef} /> */}
+                    
         </div>
         </>
     );
