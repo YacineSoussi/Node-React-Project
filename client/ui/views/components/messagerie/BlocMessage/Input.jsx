@@ -6,7 +6,6 @@ const Input = (props) => {
     // fetch new message
     
     const Submit = (e) => {
-                console.log(e.target[0].value);
         e.preventDefault();
         if(props.messageUpdate) {
             fetchUpdateMessage(e);

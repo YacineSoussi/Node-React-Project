@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoTrash } from "react-icons/io5";
+import { IoTrash, IoPencil } from "react-icons/io5";
 
 const Message = (props) => {
     
@@ -24,9 +24,8 @@ const Message = (props) => {
             <div className="media-body ml-3">
                 <div className="d-flex align-items-center">
                    
-                  
-
-                <div onClick={() => props.handleClick(props.message)} className={`w-100 rounded py-2 px-3 mb-2 ${props.message.authorId === props.user.id ? 'bg-primary' : 'bg-light'}`}>     
+    
+                <div  className={`w-100 rounded py-2 px-3 mb-2 ${props.message.authorId === props.user.id ? 'bg-primary' : 'bg-light'}`}>     
                     <p className={`text-small mb-0 ${props.message.authorId === props.user.id ? 'text-white' : 'text-muted'}`}>
                         
                         {props.message.content}
@@ -36,11 +35,24 @@ const Message = (props) => {
                 </div>
                 <p className="small text-muted"> 
                 
-                {props.message.state ===  "updated" ?<> <b style={{textDecoration: "underline" }}> Modifié le </b>:  </>: null} {date}  {props.message.authorId === props.user.id  && props.message.state !== "delete" ? 
+                {props.message.state ===  "updated" ? 
+                <> <b style={{textDecoration: "underline" }}> Modifié le </b>:  </> 
+                : null} {date}  {props.message.authorId === props.user.id  && props.message.state !== "delete" ? 
+                <>
                     <IoTrash 
                    style={{cursor: "pointer"}} 
                    className="m-1 float-right mr-2 text-danger" 
-                   onClick={(e) => props.handleDelete(e, props.message)}/> : null}</p> 
+                   onClick={(e) => props.handleDelete(e, props.message)}/>
+
+
+                    <IoPencil
+                    style={{cursor: "pointer"}}  
+                    onClick={() => props.handleClick(props.message)} 
+                    className='m-1 text-primary' />
+                   </>
+                    : null}
+                   
+                   </p> 
             </div>
         </div>
     );
