@@ -24,7 +24,7 @@ export const MessagerieApp = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    // use effect to fetch conversations
+    // On remet à jour la liste des conversations lorsqu'on modifie une conversation
     useEffect(() => {
         fetchConversations();
         setUser(getUserData());
@@ -51,17 +51,23 @@ export const MessagerieApp = () => {
         })
             .then(response => response.json())
             .then(data => {
-               
+                // Trier les conversations par date de dernier message
+                data.sort((a, b) => {
+                    return new Date(b.updatedAt) - new Date(a.updatedAt);
+                }
+                );
+                
                
                 const conversations = data.map(conversation => {
-                    // Trier la conversation par createdAt
+                    
+
+                    // Trier les messages de la conversation par createdAt
                     const sortedConversation = conversation.messages.sort((a, b) => {
                         return new Date(a.createdAt) - new Date(b.createdAt);
                     });
                    
                     conversation.messages = sortedConversation;
-               
-                let lastMessage = null;
+                    let lastMessage = null;
                 
                 if (conversation.messages.length > 0) {
                     // On récupère ici le dernier elemement du tableau pour le mettre dans lastMessage
