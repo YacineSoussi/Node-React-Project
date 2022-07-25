@@ -6,6 +6,7 @@ class Message extends Model {}
 Message.init({
 
     content: DataTypes.STRING,
+    state: DataTypes.STRING
 }, {
     sequelize: connection,
     modelName: "message",
