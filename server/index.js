@@ -9,7 +9,9 @@ const Participants = require('./routes/participants');
 const SecurityRouter = require("./routes/security");
 const app = express();
 const cors = require("cors");
-const compression = require("compression");
+const compression =  require("compression");
+const FriendshipRouter = require('./routes/friendship');
+
 
 app.use(express.json());
 app.use(cors({
@@ -24,8 +26,12 @@ app.use(Messages)
 app.use(SecurityRouter);
 app.use(UserRouter);
 app.use(Logs);
+<<<<<<< HEAD
 app.use(Conversations);
 app.use(Participants);
+=======
+app.use('/friendship', FriendshipRouter);
+>>>>>>> feat-Node/friendShip
 
 app.listen(port, () => {
     Logger.info("Server is running on port " + port);
