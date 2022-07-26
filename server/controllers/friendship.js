@@ -42,13 +42,8 @@ exports.showPendingFriendsList = asyncHandler(async (req, res, next) => {
 	const usersIdPendings = [];
 	relations.forEach((relation) => {
 		if (
-			relation.dataValues.user_sender === req.user.id &&
-			relation.dataValues.status === 'user_sender_pending_request'
-		) {
-			usersIdPendings.push(relation.dataValues.user_receiver);
-		} else if (
 			relation.dataValues.user_receiver === req.user.id &&
-			relation.dataValues.status === 'user_receiver_pending_request'
+			relation.dataValues.status === 'pending_request'
 		) {
 			usersIdPendings.push(relation.dataValues.user_sender);
 		}
@@ -66,6 +61,8 @@ exports.showPendingFriendsList = asyncHandler(async (req, res, next) => {
 	}
 	res.json({ friends: pendingsRequests });
 });
+
+
 
 
 exports.sendFriendRequest = asyncHandler(async (req, res, next) => {
@@ -91,17 +88,17 @@ exports.sendFriendRequest = asyncHandler(async (req, res, next) => {
 
 
 exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
-	if (req.user.id === parseInt(req.body.id_requester))
+	if (req.user.id === parseInt(req.body.id_sender))
 		return next(new ErrorResponse('Same ids!', 422));
 
-	if (!parseInt(req.body.id_requester) || !req.body.answer)
+	if (!parseInt(req.body.id_sender) || !req.body.answer)
 		return next(new ErrorResponse('Request cannot be processed.', 422));
 
 	if (req.body.answer !== 'accept' && req.body.answer !== 'decline')
 		return next(new ErrorResponse('#WRA.', 422)); // Wrong Response Answer
 
 	const transmitterUser = await User.findOne({
-		where: { id: req.body.id_requester },
+		where: { id: req.body.id_sender },
 	});
 	if (!transmitterUser) return next(new ErrorResponse('#NO', 422)); // No User
 
@@ -110,16 +107,9 @@ exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
 			[Op.or]: [
 				{
 					[Op.and]: [
-						{ user_sender: req.user.id },
-						{ user_receiver: req.body.id_requester },
-						{ status: 'user_receiver_pending_request' },
-					],
-				},
-				{
-					[Op.and]: [
-						{ user_sender: req.body.id_requester },
+						{ user_sender: req.body.id_sender },
 						{ user_receiver: req.user.id },
-						{ status: 'user_sender_pending_request' },
+						{ status: 'pending_request' },
 					],
 				},
 			],
@@ -140,20 +130,13 @@ exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
 });
 
 const orderUsersIds = ({ user_sender, user_receiver }) => {
-	if (user_sender < user_receiver) {
+	
 		return {
 			user_sender: user_sender,
 			user_receiver: user_receiver,
-			status: 'user_sender_pending_request',
+			status: 'pending_request',
 		};
-	} else if (user_sender > user_receiver) {
-		return {
-			user_sender: user_receiver,
-			user_receiver: user_sender,
-			status: 'user_receiver_pending_request',
-		};
-	}
-	return null;
+	
 };
 
 const getUserRelations = async (id) => {

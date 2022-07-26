@@ -17,11 +17,7 @@ Friendship.init(
 			require: true,
 		},
 		status: {
-			type: DataTypes.ENUM(
-				'user_sender_pending_request',
-				'user_receiver_pending_request',
-				'friends'
-			),
+			type: DataTypes.STRING,
 			require: true,
 			allowNull: false,
 		},
@@ -43,8 +39,7 @@ const checkUsersRelationsDatas = async (friendship) => {
 	if (friendship.user_sender === friendship.user_receiver)
 		throw new ErrorResponse('sender & receiver has same id', 422);
 
-	if (friendship.user_sender > friendship.user_receiver)
-		throw new ErrorResponse('Internal friend request error', 422);
+	
 };
 
 Friendship.addHook('beforeCreate', checkUsersRelationsDatas);

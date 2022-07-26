@@ -3,6 +3,8 @@ exports.User = require("./entities/User");
 exports.Message = require("./entities/Message");
 exports.Conversation = require("./entities/Conversation");
 exports.Participant = require("./entities/Participant");
+exports.Participant = require("./entities/Friendship");
+exports.Participant = require("./entities/Signal");
 const MessageMongo  = require("../mongo").Message;
 const ObjectId = require("mongodb").ObjectId;
 

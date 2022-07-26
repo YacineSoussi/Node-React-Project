@@ -17,7 +17,7 @@ Signal.init(
 			require: true,
 		},
 		reason: {
-			type: DataTypes.ENUM('fake profil','worst Behavior','scam','other'),
+			type: DataTypes.STRING,
 			allowNull: false,
 			require: true
 		},
