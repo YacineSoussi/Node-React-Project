@@ -4,10 +4,7 @@ const {
 	sendFriendRequest,
 	showFriendsList,
 	showPendingFriendsList,
-	showBlockedUsers,
 	answerFriendsRequest,
-	blockUser,
-	unblockUser,
 } = require('../controllers/friendship');
 
 const router = new Router();
