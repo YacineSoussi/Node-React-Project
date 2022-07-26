@@ -6,6 +6,8 @@ import {UserAnalytic} from '../ui/views/components/UserAnalytic';
 import {RedirectToHome} from '../ui/views/components/RedirectToHome';
 import {LogsComponent} from '../ui/views/components/LogsComponent';
 import { MessagerieApp } from '../ui/views/components/messagerie/MessagerieApp';
+import { UserList } from '../ui/views/components/UserList';
+import { PendingList } from '../ui/views/components/PendingList';
 
 
 export const appRouteNames = {
@@ -15,7 +17,9 @@ export const appRouteNames = {
     REGISTER_USER: '/register',
     ANALYTIC_SITE: '/analytic',
     LOGS_SITE: '/logs',
-    MESSAGERIE: '/messagerie'
+    MESSAGERIE: '/messagerie',
+    USERLIST: '/users',
+    PENDING: '/pendings',
 };
 
 export const appRoutes = [
@@ -25,5 +29,9 @@ export const appRoutes = [
     { path: appRouteNames.ANALYTIC_SITE, component: UserAnalytic, exact: true },
     { path: appRouteNames.LOGS_SITE, component:LogsComponent, exact: true },
     { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
+    { path: appRouteNames.USERLIST, component:UserList, exact: true },
+    { path: appRouteNames.PENDING, component:PendingList, exact: true },
+
+    
     { path: '*', component: RedirectToHome }
 ];  
