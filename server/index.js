@@ -26,12 +26,9 @@ app.use(Messages)
 app.use(SecurityRouter);
 app.use(UserRouter);
 app.use(Logs);
-<<<<<<< HEAD
 app.use(Conversations);
 app.use(Participants);
-=======
 app.use('/friendship', FriendshipRouter);
->>>>>>> feat-Node/friendShip
 
 app.listen(port, () => {
     Logger.info("Server is running on port " + port);
