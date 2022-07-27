@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const Friendship = require('../models/postgres/entities/Friendship');
-const Signal = require('../models/postgres/entities/Signal');
+const User = require('../models/postgres/entities/User');
 
 const { asyncHandler } = require('../middlewares/async');
 const ErrorResponse = require('../utils/errorResponse');
@@ -89,4 +89,36 @@ exports.unblockUser = asyncHandler(async (req, res, next) => {
 	}
 	return next(new ErrorResponse('#NR', 400));
 });
+
+exports.showBlockedUsers = asyncHandler(async (req, res, next) => {
+	const friendships = await getFriendships(req.user.id);
+	const usersBlockedId = [];
+	friendships.forEach((friendship) => {
+		if (
+			
+			friendship.dataValues.status === 'user_blocked'
+		) {
+			usersBlockedId.push(friendship.dataValues.user_receiver);
+		}
+	});
+
+	const blockedUsers = [];
+	for (let i = 0; i < usersBlockedId.length; i++) {
+		const userFound = await User.findByPk(usersBlockedId[i]);
+		blockedUsers.push({
+			email: userFound.dataValues.email,
+			firstName: userFound.dataValues.firstName,
+			lastName: userFound.dataValues.lastName,
+			id: userFound.dataValues.id,
+		});
+	}
+	res.json({ users_blocked: blockedUsers });
+});
+
+const getFriendships = async (id) => {
+	const friendships = await Friendship.findAll({
+		
+	});
+	return friendships;
+};
 
