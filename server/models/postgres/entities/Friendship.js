@@ -26,20 +26,19 @@ Friendship.init(
 		},
 		updatedAt: {
 			type: DataTypes.DATE,
-		},
+		}
 	},
 	{
 		sequelize: connection,
-		modelName: 'friendship',
+		modelName: 'friendship'
 	}
 );
 
 
 const checkUsersRelationsDatas = async (friendship) => {
-	if (friendship.user_sender === friendship.user_receiver)
+	if (friendship.user_sender === friendship.user_receiver) {
 		throw new ErrorResponse('sender & receiver has same id', 422);
-
-	
+	}
 };
 
 Friendship.addHook('beforeCreate', checkUsersRelationsDatas);
