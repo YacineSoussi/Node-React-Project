@@ -1,18 +1,17 @@
 import { Link, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import {isAdmin, isUserAuthenticated} from '../../adapters/AuthenticationService';
+import { isAdmin, isUserAuthenticated } from '../../adapters/AuthenticationService';
 
-import {AnalyticIcon} from '../common/icons/AnalyticIcon';
+import { AnalyticIcon } from '../common/icons/AnalyticIcon';
 import Button from 'react-bootstrap/Button';
-import {LogIcon} from '../common/icons/LogIcon';
-import {LoginIcon} from '../common/icons/LoginIcon';
-import {LogoutIcon} from '../common/icons/LogoutIcon';
-import {MessagingIcon} from '../common/icons/MessagingIcon';
-import {MyAccountIcon} from '../common/icons/MyAccountIcon';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { LogIcon } from '../common/icons/LogIcon';
+import { LoginIcon } from '../common/icons/LoginIcon';
+import { LogoutIcon } from '../common/icons/LogoutIcon';
+import { MessagingIcon } from '../common/icons/MessagingIcon';
+import { MyAccountIcon } from '../common/icons/MyAccountIcon';
 import Navbar from 'react-bootstrap/Navbar';
 import { appRouteNames } from '../../configuration/appRoutes';
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 export const Header = () => {
     const history = useHistory();
@@ -43,13 +42,12 @@ export const Header = () => {
                 </Link>
                 <Dropdown>
                     <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Friends
+                        Friends
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
-                    <Dropdown.Item href={appRouteNames.USERLIST}>List of users</Dropdown.Item>
-                    <Dropdown.Item href={appRouteNames.PENDING}>Pending requests</Dropdown.Item>
-                    <Dropdown.Item href={appRouteNames.SHOWFRIENDS}>My friends</Dropdown.Item>
+                        <Dropdown.Item href={appRouteNames.USERLIST}>List of users</Dropdown.Item>
+                        <Dropdown.Item href={appRouteNames.PENDING}>Pending requests</Dropdown.Item>
+                        <Dropdown.Item href={appRouteNames.SHOWFRIENDS}>My friends</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 {isAdmin() &&
@@ -63,18 +61,15 @@ export const Header = () => {
                         </Link>
                         <Dropdown>
                             <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                            Reports
+                                Reports
                             </Dropdown.Toggle>
-                
                             <Dropdown.Menu>
-                            <Dropdown.Item href={appRouteNames.SHOWSIGNALED}>List of signal</Dropdown.Item>
-                            <Dropdown.Item href={appRouteNames.SHOWBLOCKED}>List of blocked </Dropdown.Item>
+                                <Dropdown.Item href={appRouteNames.SHOWSIGNALED}>List of signal</Dropdown.Item>
+                                <Dropdown.Item href={appRouteNames.SHOWBLOCKED}>List of blocked </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-
                     </>
                 }
-
                 {!isAuthenticated &&
                     <Link
                         to={appRouteNames.LOGIN_USER}
@@ -105,6 +100,5 @@ export const Header = () => {
                 </Navbar.Text>
             }
         </Navbar>
-
     );
 }
