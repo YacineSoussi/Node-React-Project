@@ -11,6 +11,8 @@ const app = express();
 const cors = require("cors");
 const socketIo = require("socket.io");
 const http = require("http");
+const FriendshipRouter = require('./routes/friendship');
+const SignalRouter = require('./routes/signal');
 
 app.use(express.json());
 
@@ -22,6 +24,8 @@ app.get("/", (_, res, __) => {
     res.json({ data: "je suis la" });
 });
 
+app.use('/friendship', FriendshipRouter);
+app.use('/signal', SignalRouter);
 app.use(Messages)
 app.use(SecurityRouter);
 app.use(UserRouter);
