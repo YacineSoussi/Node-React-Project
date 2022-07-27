@@ -20,6 +20,10 @@ export function getAccessToken(){
     return Cookies.get(ACCESS_TOKEN_COOKIE_KEY) || '';
 }
 
+export function getUserPersona(){
+    return Cookies.get(USER_ROLE_COOKIE_KEY) || '';
+}
+
 export function storeUserData(user){
     Cookies.set(USER_ID_COOKIE_KEY, user.id.toString(), { expires: getDateOfExpiration() })
     Cookies.set(USER_LASTNAME_COOKIE_KEY, user.lastname, { expires: getDateOfExpiration() })

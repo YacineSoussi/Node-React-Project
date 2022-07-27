@@ -1,5 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import {isAdmin, isUserAuthenticated} from '../../adapters/AuthenticationService';
 
 import {AnalyticIcon} from '../common/icons/AnalyticIcon';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +11,6 @@ import {MessagingIcon} from '../common/icons/MessagingIcon';
 import {MyAccountIcon} from '../common/icons/MyAccountIcon';
 import Navbar from 'react-bootstrap/Navbar';
 import { appRouteNames } from '../../configuration/appRoutes';
-import {isUserAuthenticated} from '../../adapters/AuthenticationService';
 
 export const Header = () => {
     const history = useHistory();
@@ -40,13 +40,18 @@ export const Header = () => {
                 <Link to={appRouteNames.MESSAGERIE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
                     Messagerie <MessagingIcon/>
                 </Link>
-                <Link to={appRouteNames.ANALYTIC_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
-                    Analytic <AnalyticIcon/>
-                </Link>
-                <Link to={appRouteNames.LOGS_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
-                    Logs
-                    <LogIcon/>
-                </Link>
+                {isAdmin() &&
+                    <>
+                        <Link to={appRouteNames.ANALYTIC_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
+                            Analytic <AnalyticIcon/>
+                        </Link>
+                        <Link to={appRouteNames.LOGS_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
+                            Logs
+                            <LogIcon/>
+                        </Link>
+                    </>
+                }
+
                 {!isAuthenticated &&
                     <Link
                         to={appRouteNames.LOGIN_USER}
