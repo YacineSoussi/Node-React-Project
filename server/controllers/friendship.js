@@ -7,10 +7,10 @@ const User = require('../models/postgres/entities/User');
 
 
 exports.showFriendsList = asyncHandler(async (req, res, next) => {
-	if ((await User.findOne({ where: { id: req.params.id } })) === null)
+	if ((await User.findOne({ where: { id: req.user.id } })) === null)
 		return res.json({ error: 'User error !' }, 400);
 
-	const relations = await getUserRelations(req.params.id);
+	const relations = await getUserRelations(req.user.id);
 
 	if (relations.length === 0) return res.json({ friends: [] }, 200);
 

@@ -4,7 +4,6 @@ import { getAccessToken } from '../../../adapters/CookiesAppStorage';
 export const PendingList = () => {
 
     const [users, setUsers] = useState([]);
-    const [hidden, setHidden] = useState(false,'');
 
     const fetchUsers = async () => {
         const data = await fetch('http://localhost:3000/friendship/pendings', {
@@ -68,9 +67,7 @@ export const PendingList = () => {
         const buttonToClick = document.getElementById(index);
         buttonToClick.style.display = "none";
     }
-    const generateKey = (str, key) => {
-        return `${str}-${key}`;
-    };
+
     return (
         <div>
         {users.friends?.map(((user,key) => (

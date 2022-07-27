@@ -8,6 +8,8 @@ import {LogsComponent} from '../ui/views/components/LogsComponent';
 import { MessagerieApp } from '../ui/views/components/messagerie/MessagerieApp';
 import { UserList } from '../ui/views/components/UserList';
 import { PendingList } from '../ui/views/components/PendingList';
+import { MyFriends } from '../ui/views/components/MyFriends.jsx';
+
 
 
 export const appRouteNames = {
@@ -20,6 +22,7 @@ export const appRouteNames = {
     MESSAGERIE: '/messagerie',
     USERLIST: '/users',
     PENDING: '/pendings',
+    SHOWFRIENDS: '/my-friends'
 };
 
 export const appRoutes = [
@@ -30,7 +33,7 @@ export const appRoutes = [
     { path: appRouteNames.LOGS_SITE, component:LogsComponent, exact: true },
     { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
     { path: appRouteNames.USERLIST, component:UserList, exact: true },
-    { path: appRouteNames.PENDING, component:PendingList, exact: true },
+    { path: appRouteNames.SHOWFRIENDS, component:MyFriends, exact: true },
 
     
     { path: '*', component: RedirectToHome }
