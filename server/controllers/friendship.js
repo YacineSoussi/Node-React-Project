@@ -129,14 +129,34 @@ exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
 	}
 });
 
+exports.deleteFriend = asyncHandler(async (req, res, next) => {
+	
+	const relationAlreadyExists = await UsersRelations.findOne({
+		where: {
+			[Op.or]: [{user_sender: req.body.id_receiver, user_receiver: req.user.id }, { user_sender: req.user.id , user_receiver: req.body.id_receiver}]
+		},
+	});
+	if (!relationAlreadyExists)
+		return next(new ErrorResponse('Relation does not exist.', 400));
+
+	console.log(relationAlreadyExists);
+	const result = await UsersRelations.destroy({
+		where: {
+			[Op.or]: [{user_sender: req.body.id_receiver, user_receiver: req.user.id }, { user_sender: req.user.id , user_receiver: req.body.id_receiver}]
+		},
+	});
+	if (result) res.json(204);
+});
+
+
 const orderUsersIds = ({ user_sender, user_receiver }) => {
 	
-		return {
-			user_sender: user_sender,
-			user_receiver: user_receiver,
-			status: 'pending_request',
-		};
-	
+	return {
+		user_sender: user_sender,
+		user_receiver: user_receiver,
+		status: 'pending_request',
+	};
+
 };
 
 const getUserRelations = async (id) => {
