@@ -31,5 +31,5 @@ export const appRoutes = [
     { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
     { path: appRouteNames.ACCOUNT_INFO, component:MyAccount, exact: true},
     { path: appRouteNames.RESET_PASSWORD, component:ResetPassword, exact: true},
-    { path: '*', component: RedirectToHome }
+    { path: '/', component: RedirectToHome }
 ];

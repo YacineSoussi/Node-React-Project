@@ -28,7 +28,6 @@ export const Header = () => {
         setIsAuthenticated(isUserAuthenticated());
     }, [history]);
 
-
     return (
         <Navbar
             expand="lg"
