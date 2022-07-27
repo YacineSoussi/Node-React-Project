@@ -11,6 +11,8 @@ import {MessagingIcon} from '../common/icons/MessagingIcon';
 import {MyAccountIcon} from '../common/icons/MyAccountIcon';
 import Navbar from 'react-bootstrap/Navbar';
 import { appRouteNames } from '../../configuration/appRoutes';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 export const Header = () => {
     const history = useHistory();
@@ -39,6 +41,17 @@ export const Header = () => {
                 <Link to={appRouteNames.MESSAGERIE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
                     Messagerie <MessagingIcon/>
                 </Link>
+                <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    Friends
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                    <Dropdown.Item href={appRouteNames.USERLIST}>List of users</Dropdown.Item>
+                    <Dropdown.Item href={appRouteNames.PENDING}>Pending requests</Dropdown.Item>
+                    <Dropdown.Item href={appRouteNames.SHOWFRIENDS}>My friends</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 {isAdmin() &&
                     <>
                         <Link to={appRouteNames.ANALYTIC_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
@@ -48,6 +61,17 @@ export const Header = () => {
                             Logs
                             <LogIcon/>
                         </Link>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                            Reports
+                            </Dropdown.Toggle>
+                
+                            <Dropdown.Menu>
+                            <Dropdown.Item href={appRouteNames.SHOWSIGNALED}>List of signal</Dropdown.Item>
+                            <Dropdown.Item href={appRouteNames.SHOWBLOCKED}>List of blocked </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+
                     </>
                 }
 
@@ -81,5 +105,6 @@ export const Header = () => {
                 </Navbar.Text>
             }
         </Navbar>
+
     );
 }

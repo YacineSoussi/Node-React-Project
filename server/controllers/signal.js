@@ -2,6 +2,8 @@ const Signal = require('../models/postgres/entities/Signal');
 const { asyncHandler } = require('../middlewares/async');
 const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/postgres/entities/User');
+const { Op } = require('sequelize');
+
 
 exports.signalRequest = asyncHandler(async (req, res, next) => {
 	if (!req.body.user_id_to_signal || !req.body.reason) {
@@ -40,3 +42,30 @@ exports.signalRequest = asyncHandler(async (req, res, next) => {
 
 	res.json('Blocking request not sent.', 400);
 });
+
+exports.showSignaledUsers = asyncHandler(async (req, res, next) => {
+	const signals = await getSignaled(req.user.id);
+	const usersSignaledId = [];
+	signals.forEach((signal) => {
+		usersSignaledId.push(signal.dataValues.user_id_to_signal);
+	});
+
+	const SignaledUsers = [];
+	for (let i = 0; i < usersSignaledId.length; i++) {
+		const userFound = await User.findByPk(usersSignaledId[i]);
+		SignaledUsers.push({
+			email: userFound.dataValues.email,
+			firstName: userFound.dataValues.firstName,
+			lastName: userFound.dataValues.lastName,
+			id: userFound.dataValues.id,
+		});
+	}
+	res.json({ SignaledUsers: SignaledUsers });
+});
+
+const getSignaled = async (id) => {
+	const friendships = await Signal.findAll({
+		
+	});
+	return friendships;
+};
