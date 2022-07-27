@@ -42,7 +42,7 @@ router.post("/users", async(req, res) => {
 });
 
 router.delete("/users/:id", checkAuthentication, async(req, res) => {
-    console.log(req.user);
+    
     if (req.user.id !== parseInt(req.params.id, 10)) {
         return res.sendStatus(403);
     }
@@ -96,5 +96,7 @@ router.get("/users/:id", checkAuthentication, async(req, res) => {
         console.error(error);
     }
 });
+
+
 
 module.exports = router;

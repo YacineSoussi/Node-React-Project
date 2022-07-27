@@ -2,7 +2,6 @@ const { verifyToken } = require("../lib/tokenManager.js");
 
 module.exports = async(req, res, next) => {
     const auth = req.headers.authorization;
-    console.log(auth);
     if (!auth) {
         console.log("no auth");
         return res.sendStatus(401);
