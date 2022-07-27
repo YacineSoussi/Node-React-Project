@@ -18,9 +18,6 @@ useEffect(() => {
     //  On se connecte au socket 
      socketRef.current.connect();
      
-     socketRef.current.on("connect", () => {
-        console.log("connected");
-    });
 
     // À chaque fois qu'un message est envoyé à l'utilisateur connecté à qui est adressé le message, on récupère le message et on l'affiche dans la conversation
       socketRef.current.on("private_message", ({conversationMAJ, author, data, allMessages }) => {
@@ -32,11 +29,9 @@ useEffect(() => {
       });
       
       socketRef.current.on("update_message", ({content, from, conversations, newConversation, to, conversationAMAJ, author }) => {
-        console.log("update_message");
+        
         // Ici on cherche la conversation qu'on a mis a jour et on la met a jour 
         conversations[conversationAMAJ] = newConversation;
-       console.log([...newConversation.messages]);
-       console.log(conversations[conversationAMAJ]);
         // On modifie le state de la conversation active pour changer l'affichage du dernier msg
         props.setConversation(newConversation);
         props.setMessages([...newConversation.messages]);
@@ -149,15 +144,12 @@ useEffect(() => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log("data", data);
             // Ici on cherche le message qu'on est en train de modifier pour le mettre à jour 
             const messages = props.messages;
             const index = messages.findIndex(message => message.id === data.id);
             
             messages[index] = data;
-            console.log("messages", messages[index]);
             props.setMessages(messages);
-
             e.target[0].value = '';
 
             
@@ -171,7 +163,7 @@ useEffect(() => {
             const conversation = props.conversation;
             const conversationMAJ = {
                 lastMessage: lastMsg,
-                messages: [...conversation.messages],
+                messages: [...messages],
                 id: conversation.id,
                 updatedAt: data.updatedAt,
                 lastMessageId: lastMsg.id,
@@ -183,7 +175,6 @@ useEffect(() => {
             const indexConversation = props.conversations.findIndex(conversation => conversation.id === conversationMAJ.id);
             props.conversations[indexConversation] = conversationMAJ;
            
-            console.log("conversatoinMAJ", conversationMAJ);
             // On modifie le state de la conversation active pour changer l'affichage du dernier msg
             props.setConversation(conversationMAJ);
             // Pour pouvoir indiquer qu'actuellement il n'y a pas de message a modifier ou supprimer
