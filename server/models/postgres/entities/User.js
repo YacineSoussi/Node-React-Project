@@ -45,10 +45,6 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    token: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
 }, {
     sequelize: connection,
     modelName: "user",
@@ -63,7 +59,10 @@ const hashPassword = async(user) => {
 
 User.addHook("beforeCreate", hashPassword);
 User.addHook("beforeUpdate", async(user, { fields }) => {
-    await hashPassword(user);
+    if (fields.includes("password")) {
+        await hashPassword(user);
+    }
+
 });
 
 module.exports = User;

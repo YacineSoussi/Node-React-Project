@@ -122,17 +122,23 @@ router.put("/resetPassword/:id", checkAuthentication, async(req, res) => {
     const userPasswordFromBody = req.body.password;
     console.log(userId, userPasswordFromBody);
     try {
-        const result = await User.update({
+        const [, rows] = await User.update({
                 password: userPasswordFromBody
             },
 
             {
                 where: { id: userId },
+                returning: true,
+                individualHooks: true,
             }
 
         );
-        console.log("result: ", result[0]);
-        res.status(200).json(result);
+        if (!rows[0]) {
+            res.sendStatus(404);
+        } else {
+            res.json(rows[0]);
+        }
+
 
     } catch (error) {
         if (error instanceof ValidationError) {

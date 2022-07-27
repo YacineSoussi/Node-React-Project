@@ -20,7 +20,7 @@ export const ResetPassword = () => {
 
 
     useMustBeAuthenticateGuard();
-
+    const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const [password, setPassword] = useState("");
     const [isCorrectPassword, setIsCorrectPassword] = useState();
@@ -36,7 +36,7 @@ export const ResetPassword = () => {
         <Col md={8}>
           <Card className='h-100' body>
             <PageHeader>
-              Reset Password <PasswordIcon/>
+              Edit Password <PasswordIcon/>
             </PageHeader>
 
             <Form className='mt-4' onSubmit={onSubmit}>
@@ -61,7 +61,7 @@ export const ResetPassword = () => {
     )
 
     async function sendFormData(data, requestOptions = {}){
-        console.log('jesus dans le send')
+        console.log('je suis dans le send')
         requestOptions = {
             method: 'PUT',
             headers: { 
@@ -72,10 +72,22 @@ export const ResetPassword = () => {
           };
 
         try {
-            fetch('http://localhost:3000/resetPassword/' + userId, requestOptions)
+            await fetch('http://localhost:3000/resetPassword/' + userId, requestOptions).then(response => {
+                if(response.status === 200){
+                    setIsLoading(false);
+                    history.push(appRouteNames.LOGOUT_USER)
+
+                }else if(response.status === 401) {
+                    console.log("je suis dans le 401")
+                }
+            })
+            
 
         }  catch (err){
-
+            await addToast('Erreur Server', {
+                appearance: 'error',
+                autoDismiss: true
+            });
         }
     }
 
@@ -90,7 +102,7 @@ export const ResetPassword = () => {
         try {
             response = await fetch('http://localhost:3000/login', requestOptions);
         }catch(err){
-            addToast('please try again !', {
+            await addToast('please try again !', {
                 appearance: 'error',
                 autoDismiss: true
             });
@@ -131,7 +143,7 @@ export const ResetPassword = () => {
                await sendFormData({password: newPassword})
             }else {
                 setIsLoading(false);
-                addToast('Invalid Password', {
+                await addToast('Invalid Password', {
                     appearance: 'error',
                     autoDismiss: true
                 });
