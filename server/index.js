@@ -1,7 +1,6 @@
 const express = require("express");
 const port = process.env.PORT || 3000;
 const UserRouter = require("./routes/users");
-const Logger = require("./lib/logger");
 const Logs = require('./routes/logs');
 const Messages = require('./routes/messages');
 const Conversations = require('./routes/conversations');
@@ -11,12 +10,9 @@ const app = express();
 const cors = require("cors");
 const socketIo = require("socket.io");
 const http = require("http");
-const compression =  require("compression");
 const FriendshipRouter = require('./routes/friendship');
 const SignalRouter = require('./routes/signal');
 const BlockRouter = require('./routes/block');
-
-
 
 app.use(express.json());
 
