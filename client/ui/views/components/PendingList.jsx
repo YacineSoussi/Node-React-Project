@@ -28,7 +28,7 @@ export const PendingList = () => {
         fetchUsers();
     }, []);
 
-    const requestResponse = async (id) => {
+    const positiveRequestResponse = async (id) => {
         const data = await fetch('http://localhost:3000/friendship/request-answer', {
             method: 'POST',
             headers: {
@@ -44,29 +44,64 @@ export const PendingList = () => {
         return await data.json();
     };
 
-    const handleClick = (key) => {
+    const negativeRequestResponse = async (id) => {
+        const data = await fetch('http://localhost:3000/friendship/request-answer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAccessToken()}`,
+            },
+            body: JSON.stringify({
+                id_sender: id,
+                answer: "decline",
+          
+            }),
+        });
+        return await data.json();
+    };
+
+    const acceptClick = (key) => {
         const buttonToClick = document.getElementById(key);
         buttonToClick.style.display = "none";
     }
+    const declineClick = (index) => {
+        const buttonToClick = document.getElementById(index);
+        buttonToClick.style.display = "none";
+    }
+    const generateKey = (str, key) => {
+        return `${str}-${key}`;
+    };
     return (
         <div>
         {users.friends?.map(((user,key) => (
             <Fragment key={key}>  
             <p> {user.email}</p> 
-            {!hidden &&
+         
                 <button
                     id={key}
                     color='blue'
                     size={25}
                 
                     onClick={() => {
-                        requestResponse(user.id);
-                        handleClick(key);
+                        positiveRequestResponse(user.id);
+                        acceptClick(key);
                         }
                     }
                 > Accept request {user.id}
                 </button>
-            }
+                <button
+                    id={key}
+                    color='blue'
+                    size={25}
+                
+                    onClick={() => {
+                        negativeRequestResponse(user.id);
+                        declineClick(key);
+                        }
+                    }
+                > Refuse request {user.id}
+                </button>
+        
             </Fragment>
                     
         )))}
