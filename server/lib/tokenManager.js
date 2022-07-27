@@ -6,7 +6,6 @@ exports.createToken = async(user) => {
             expiresIn: "1y",
         }
     );
-
     return token;
 };
 
