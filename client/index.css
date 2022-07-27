@@ -1,6 +1,7 @@
-@import "./styles/animations.css";
 @import "./styles/buttons.css";
 @import "./styles/variables.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
 body {
     margin: 0;
     background-color: #EFEFEF;
@@ -54,4 +55,82 @@ code {
 
 .App #test .form-input {
     margin: 10px 0 0 30px;
+}
+
+.container {
+    height: 100vh;
+}
+
+.card {
+    width: 380px;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+    position: relative;
+    height: 452px;
+}
+
+.upper {
+    background-color: var(--brown-1);
+    height: 265px;
+    border-radius: 15px;
+    z-index: 10;
+    margin-top: -16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accounts {
+    width: 310px;
+    height: 212px;
+    background-color: #fff;
+    position: absolute;
+    top: 207px;
+    border-radius: 12px;
+    left: 9%;
+    z-index: 12;
+    padding: 15px;
+}
+
+.down {
+    background-color: #dae0ef;
+    height: 200px;
+    border-radius: 15px;
+    margin-top: -14px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background-color: #dae0ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.dots {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    background-color: white;
+}
+
+.subscribe {
+    margin-top: 20px;
+    height: 100px;
+    background-color: #f4f6fa;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.subscribe span {
+    font-size: 15px;
+}
+
+.subscribe a {
+    text-decoration: none;
+    color: #534ff8;
 }

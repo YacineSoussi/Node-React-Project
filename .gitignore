@@ -1,9 +1,0 @@
-node_modules
-SampleCollections
-server/node_modules
-.history
-client/node_modules
-client/package-lock.json
-server/package-lock.json
-./package-lock.json
-./.npm

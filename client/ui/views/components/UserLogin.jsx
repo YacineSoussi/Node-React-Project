@@ -63,8 +63,6 @@ export const UserLogin = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           };
-          console.log(data);
-
         try{
           await fetch('http://localhost:3000/login', requestOptions).then(response => {
             if(response.status === 200){
@@ -75,7 +73,8 @@ export const UserLogin = () => {
                     lastname: data.userData[0].lastName,
                     firstname: data.userData[0].firstName,
                     role: data.userData[0].role,
-                    email: data.userData[0].email
+                    email: data.userData[0].email,
+                    creationDate: data.userData[0].createdAt
                   });    
                   history.push(appRouteNames.ANALYTIC_SITE);
                   

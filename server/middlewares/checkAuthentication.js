@@ -6,10 +6,13 @@ module.exports = async(req, res, next) => {
         console.log("no auth");
         return res.sendStatus(401);
     }
+
     const [type, token] = auth.split(" ");
+
     if (type !== "Bearer") {
         return res.sendStatus(401);
     }
+
     try {
         const decoded = await verifyToken(token);
         req.user = decoded;

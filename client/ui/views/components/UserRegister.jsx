@@ -16,8 +16,9 @@ import {useMustBeLoggedOutGuard} from '../../common/Hooks/useMustBeLoggedOutGuar
 export const UserRegister = () => {
 
     const history = useHistory()
-    const [response, setResponse] = useState()
+    const { addToast } = useToasts()
     const [lastName, setLastName] = useState('')
+    const [response, setResponse] = useState()
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -84,7 +85,6 @@ export const UserRegister = () => {
       try{
         fetch('http://localhost:3000/register', requestOptions)
         .then(response =>{
-          console.log(response);
           if(response.status === 201){
             setResponse(response);
             history.push(appRouteNames.LOGIN_USER);

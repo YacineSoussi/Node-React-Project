@@ -3,7 +3,6 @@ const express = require("express");
 const { User } = require("../models/postgres");
 const { ValidationError } = require("sequelize");
 const { createToken } = require("../lib/tokenManager.js");
-const cors = require("cors");
 const bcryptjs = require("bcryptjs");
 
 const router = new Router();
@@ -14,7 +13,6 @@ function formatError(error) {
         return acc;
     }, {});
 }
-
 
 router.post("/register", async(req, res) => {
     try {

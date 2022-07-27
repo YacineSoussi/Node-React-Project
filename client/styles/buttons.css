@@ -3,38 +3,9 @@
     color: #fff;
 }
 
-.btn-dark-blue {
-    background: var(--dark-blue-color);
-    color: #fff;
-}
-
 .btn-main:active,
 .btn-main:focus,
 .btn-main:hover,
 .btn-main:visited {
     color: #fff;
-}
-
-.btn-dark-blue:active,
-.btn-dark-blue:focus,
-.btn-dark-blue:hover,
-.btn-dark-blue:visited {
-    color: #fff;
-}
-
-.btn-outline-main {
-    background: #fff;
-    border: 2px solid var(--main-brown);
-    color: var(--main-brown);
-}
-
-.btn-outline-dark-blue {
-    background: #fff;
-    border: 1px solid var(--dark-blue-color);
-    color: var(--dark-blue-color);
-}
-
-.btn-outline-main-bg-transparent {
-    border: 1px solid var(--main-brown);
-    color: var(--main-brown);
 }
