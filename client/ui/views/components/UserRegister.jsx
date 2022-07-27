@@ -34,9 +34,9 @@ export const UserRegister = () => {
     useMustBeLoggedOutGuard();
 
     return (
-        <Row className='justify-content-center'>
-            <Col md={8}>
-                <Card className='h-100' body>
+        <Row className='justify-content-center h-100'>
+            <Col className="col-register">
+                <Card body>
                     <PageHeader>
                         Inscription <UserIcon/>
                     </PageHeader>
@@ -46,14 +46,14 @@ export const UserRegister = () => {
                             value={lastName}
                             onChange={setLastName}
                             error={errorLastName}
-                            placeholder='Nom ici'
+                            placeholder='Entrez votre nom'
                         />
                         <InputWithErrors
                             label='Prénom'
                             value={firstName}
                             onChange={setFirstName}
                             error={errorFirstName}
-                            placeholder='Prénom ici'
+                            placeholder='Entrer votre prénom'
                         />
                         <InputWithErrors
                             label='Email'
@@ -67,7 +67,7 @@ export const UserRegister = () => {
                             value={password}
                             onChange={setPassword}
                             error={errorPassword}
-                            placeholder='password'
+                            placeholder='Entrer votre mot de passe'
                             type='password'
                         />
                         <InputWithErrors
@@ -75,8 +75,8 @@ export const UserRegister = () => {
                             value={passwordConfirmation}
                             onChange={setPasswordConfirmation}
                             error={errorPasswordConfirmation}
-                            placeholder='password'
-                            type='password'
+                            placeholder='Confirmez votre mot de passe'
+                            type="password"
                         />
                         <Link to={appRouteNames.LOGIN_USER}>
                             Déjà inscrit? Connecte-toi

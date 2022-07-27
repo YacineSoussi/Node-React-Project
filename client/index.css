@@ -44,6 +44,12 @@ code {
     margin-top: 10px;
 }
 
+.App .main-container .col-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .App .main-container .col-login {
     display: flex;
     align-items: center;
