@@ -1,6 +1,6 @@
-import { useMustBeAdmin, useMustBeAuthenticateGuard } from '../../common/Hooks/useMustBeAuthenticateGuard';
-
 import React from 'react';
+import { useMustBeAdmin } from '../../common/Hooks/useMustBeAdmin';
+import { useMustBeAuthenticateGuard } from '../../common/Hooks/useMustBeAuthenticateGuard';
 
 export const LogsComponent = () => {
     useMustBeAuthenticateGuard();
