@@ -7,20 +7,20 @@ import { ToastProvider } from 'react-toast-notifications';
 
 export const App = ({appRoutes}) => {
 
-  return (
-    <BrowserRouter>
-      <ToastProvider placement={'bottom-center'}>
-        <div className="App">
-          <Header/>
-          <Container fluid='md' className='main-container'>
-            <Switch>
-              {appRoutes.map((route, index) =>
-                <Route key={index} component={route.component} path={route.path} exact={route.exact}/>
-              )}
-            </Switch>
-          </Container>
-        </div>
-      </ToastProvider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <ToastProvider placement={'bottom-center'}>
+                <div className="App">
+                    <Header/>
+                    <Container fluid='md' className='main-container'>
+                        <Switch>
+                            {appRoutes.map((route, index) =>
+                                <Route key={index} component={route.component} path={route.path} exact={route.exact}/>
+                            )}
+                        </Switch>
+                    </Container>
+                </div>
+            </ToastProvider>
+        </BrowserRouter>
+    );
 };
