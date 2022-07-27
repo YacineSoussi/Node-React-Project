@@ -24,6 +24,7 @@ app.get("/", (_, res, __) => {
     res.json({ data: "je suis la" });
 });
 
+
 app.use(Messages)
 app.use(SecurityRouter);
 app.use(UserRouter);
