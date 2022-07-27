@@ -15,7 +15,7 @@ const fetchUsers = async () => {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getAccessToken()}`
+      'Authorization': `Bearer ${getAccessToken()}`
 		},
 	})
     .then(data => data.json())

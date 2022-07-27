@@ -11,6 +11,8 @@ import {LoginIcon} from '../common/icons/LoginIcon';
 import {LogIcon} from '../common/icons/LogIcon';
 import {MessagingIcon} from '../common/icons/MessagingIcon';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 export const Header = () => {
 
@@ -41,11 +43,24 @@ export const Header = () => {
                 style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
             Logs <LogIcon/>
             </Link>
+            <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                Friends
+                </Dropdown.Toggle>
+      
+                <Dropdown.Menu>
+                <Dropdown.Item href={appRouteNames.USERLIST}>List of users</Dropdown.Item>
+                <Dropdown.Item href={appRouteNames.PENDING}>Pending requests</Dropdown.Item>
+                <Dropdown.Item href={appRouteNames.SHOWFRIENDS}>My friends</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
            {!isAuthenticated &&
                 <Link to={appRouteNames.LOGIN_USER}
                 style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
             connexion <LoginIcon/>
             </Link>
+            
            } 
             
         </Navbar.Brand>

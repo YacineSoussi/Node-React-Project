@@ -34,6 +34,7 @@ export const appRoutes = [
     { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
     { path: appRouteNames.USERLIST, component:UserList, exact: true },
     { path: appRouteNames.SHOWFRIENDS, component:MyFriends, exact: true },
+    { path: appRouteNames.PENDING, component:PendingList, exact: true },
 
     
     { path: '*', component: RedirectToHome }
