@@ -18,7 +18,7 @@ GET http://localhost:3000/logs/62c5abede75cf83d3526d77f
 
 ###
 
-GET http://localhost:3000/messages
+GET http://localhost:3000/friendship/show
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
 
 ###

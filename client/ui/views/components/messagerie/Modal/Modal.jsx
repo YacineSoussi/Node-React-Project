@@ -43,7 +43,8 @@ const fetchPostConversation = async (secondUserId) => {
                     <RiCloseLine style={{ marginBottom: "-3px" }} />
                 </button>
                 <div className={styles.modalContent}>
-                    {props.amis ? props.amis.map((ami, key) => {
+                    
+                    {props.amis.length > 0 ? props.amis.map((ami, key) => {
                         return (
                             <>
                                 <div onClick={() => fetchPostConversation(ami.id)} key={key} style={{cursor: "pointer"}}>{ami.lastName} {ami.firstName}</div>

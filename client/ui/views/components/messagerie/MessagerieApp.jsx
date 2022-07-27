@@ -117,7 +117,7 @@ export const MessagerieApp = () => {
 
     // Permet de récuperer la liste d'amis (users en attendant d'avoir la route pour les amis)
     const fetchUsers = async () => {
-        const response = await fetch(`http://localhost:3000/users`, {
+        const response = await fetch(`http://localhost:3000/friendship/show`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
