@@ -12,8 +12,8 @@ const cors = require("cors");
 const socketIo = require("socket.io");
 const http = require("http");
 
-
 app.use(express.json());
+
 app.use(cors({
     origin: "*"
 }));
@@ -42,19 +42,24 @@ const io = socketIo(server, {
 // we register a middleware which checks the username and allows the connection:
 io.use((socket, next) => {
     const userId = socket.handshake.auth.userId;
+
     if (!userId) {
         return next(new Error("invalid userId"));
     }
+
     // On enregistre l'utilisateur dans la socket avec son id postgresql
     socket.userId = userId;
     socket.join(userId)
+
     next();
 });
+
 io.on("connection", (socket) => {
     console.log("connection", socket.id);
 
     // we send all existing users to the client:
     const users = [];
+
     // We are looping over the io.of("/").sockets object, which is a Map of all currently connected Socket instances, indexed by ID.
     for (let [id, socket] of io.of("/").sockets) {
         users.push({

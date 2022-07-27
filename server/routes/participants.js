@@ -1,6 +1,4 @@
-const Conversation = require("../models/postgres/entities/Conversation");
 const checkAuthentication = require("../middlewares/checkAuthentication");
-const { Message } = require("../models/postgres");
 const Participant = require("../models/postgres/entities/Participant");
 const { ValidationError } = require("sequelize");
 const { Router } = require("express");
