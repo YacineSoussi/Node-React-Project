@@ -38,7 +38,7 @@ router.post("/messages", async(req, res) => {
 });
 
 router.delete("/messages/:id", async(req, res) => {
-    console.log(req.message);
+    
     if (req.message.id !== parseInt(req.params.id, 10)) {
         return res.sendStatus(403);
     }

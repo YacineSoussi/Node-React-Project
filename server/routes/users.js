@@ -147,4 +147,6 @@ router.put("/resetPassword/:id", checkAuthentication, async(req, res) => {
     }
 });
 
+
+
 module.exports = router;
