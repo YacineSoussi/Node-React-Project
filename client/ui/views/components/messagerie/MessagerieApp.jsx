@@ -13,6 +13,7 @@ export const MessagerieApp = () => {
 
     useMustBeAuthenticateGuard();
 
+    
     const [authorLastMessage, setAuthorLastMessage] = useState(null); 
     const [conversations, setConversations] = useState([]);
     const [selectedConversationId, setSelectedConversationId] = useState(null);
@@ -24,15 +25,15 @@ export const MessagerieApp = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+
+    
     // On remet à jour la liste des conversations lorsqu'on modifie une conversation
     useEffect(() => {
         fetchConversations();
         setUser(getUserData());
-        
-        
     }, [updatedConversation]);
 
-        // On met a jour la conversation selectionnée dès le chargement de la page
+        // On met a jour la conversation selectionnée dès le chargement de la page avec la premiere
     useEffect(() => {
         
             if (selectedConversationId) {
@@ -57,9 +58,7 @@ export const MessagerieApp = () => {
                 }
                 );
                 
-               
                 const conversations = data.map(conversation => {
-                    
 
                     // Trier les messages de la conversation par createdAt
                     const sortedConversation = conversation.messages.sort((a, b) => {
@@ -190,7 +189,6 @@ export const MessagerieApp = () => {
             amis={amis} 
             isOpen={isOpen} 
             setIsOpen={setIsOpen} 
-            conversation={conversations} 
             setConversations={setConversations} 
             user={user} 
             selectedConversationId={selectedConversationId} 

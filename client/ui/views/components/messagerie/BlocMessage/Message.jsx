@@ -44,11 +44,11 @@ const Message = (props) => {
                    className="m-1 float-right mr-2 text-danger" 
                    onClick={(e) => props.handleDelete(e, props.message)}/>
 
-
-                    <IoPencil
+                     <IoPencil
                     style={{cursor: "pointer"}}  
                     onClick={() => props.handleClick(props.message)} 
-                    className='m-1 text-primary' />
+                    className='m-1 text-primary' /> 
+                   
                    </>
                     : null}
                    

@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import { Header } from './views/Header';
-import React from "react";
+import React, { useEffect } from "react";
 import { ToastProvider } from 'react-toast-notifications';
+
 
 export const App = ({appRoutes}) => {
 

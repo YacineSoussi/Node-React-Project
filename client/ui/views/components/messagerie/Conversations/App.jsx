@@ -23,7 +23,6 @@ const App = (props) => {
                         user={props.user} 
                         amis={props.amis} 
                         setIsOpen={props.setIsOpen}
-                        conversation={props.conversation}
                         getParticipants={props.getParticipants}
                         participants={props.participants}
                         />}
