@@ -63,9 +63,7 @@ const hashPassword = async(user) => {
 
 User.addHook("beforeCreate", hashPassword);
 User.addHook("beforeUpdate", async(user, { fields }) => {
-    if (fields.includes("password")) {
-        await hashPassword(user);
-    }
+    await hashPassword(user);
 });
 
 module.exports = User;

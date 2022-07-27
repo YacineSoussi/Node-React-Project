@@ -4,6 +4,7 @@ import { InputLabel} from './InputLabel';
 import { ErrorMessage } from './ErrorMessage';
 
 export const InputWithErrors = ({ label, value, onChange, error, type = 'text', placeholder }) => {
+    console.log(error);
     return <Form.Group>
     <InputLabel>{label}</InputLabel>
     <Form.Control type={type}

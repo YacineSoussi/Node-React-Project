@@ -30,7 +30,7 @@ export function storeUserData(user){
     Cookies.set(USER_FIRSTNAME_COOKIE_KEY, user.firstname, { expires: getDateOfExpiration() })
     Cookies.set(USER_EMAIL_COOKIE_KEY, user.email, { expires: getDateOfExpiration() })
     Cookies.set(USER_ROLE_COOKIE_KEY, user.role, { expires: getDateOfExpiration() })
-    Cookies.set(USER_CREATED_AT_COOKIE_KEY, user.createdAt, { expires: getDateOfExpiration() })
+    Cookies.set(USER_CREATED_AT_COOKIE_KEY, user.creationDate, { expires: getDateOfExpiration() })
 
 }
 
@@ -41,7 +41,7 @@ export function getUserData(){
         firstname: Cookies.get(USER_FIRSTNAME_COOKIE_KEY) || '',
         email: Cookies.get(USER_EMAIL_COOKIE_KEY) || '',
         role: Cookies.get(USER_ROLE_COOKIE_KEY) || '',
-        created_at: Cookies.get(USER_CREATED_AT_COOKIE_KEY) || ''
+        creationDate: Cookies.get(USER_CREATED_AT_COOKIE_KEY) || ''
       }
 }
 

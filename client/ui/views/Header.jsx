@@ -9,6 +9,7 @@ import {LogoutIcon} from '../common/icons/LogoutIcon';
 import {AnalyticIcon} from '../common/icons/AnalyticIcon';
 import {LoginIcon} from '../common/icons/LoginIcon';
 import {LogIcon} from '../common/icons/LogIcon';
+import {MyAccountIcon} from '../common/icons/MyAccountIcon';
 import {MessagingIcon} from '../common/icons/MessagingIcon';
 import Button from 'react-bootstrap/Button';
 
@@ -18,6 +19,10 @@ export const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     function redirectToLogout() {
         history.push(appRouteNames.LOGOUT_USER)
+    };
+
+    function redirectToMyAccount() {
+        history.push(appRouteNames.ACCOUNT_INFO)
     };
 
     useEffect(() => {
@@ -56,6 +61,12 @@ export const Header = () => {
                     style={{ color: 'var(--brown-1)', borderColor: 'var(--brown-1)' }}
                     onClick={redirectToLogout}>
             <LogoutIcon/>
+            </Button>
+
+            <Button variant=""
+                    style={{ color: 'var(--brown-1)', borderColor: 'var(--brown-1)' }}
+                    onClick={redirectToMyAccount}>
+            <MyAccountIcon/>
             </Button>
         </Navbar.Text>
         }
