@@ -18,6 +18,7 @@ export const UserRegister = () => {
     const history = useHistory()
     const { addToast } = useToasts()
     const [lastName, setLastName] = useState('')
+    const [response, setResponse] = useState()
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
