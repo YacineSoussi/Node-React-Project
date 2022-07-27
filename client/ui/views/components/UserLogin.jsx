@@ -50,7 +50,7 @@ export const UserLogin = () => {
                             type='password'
                         />
                         <Link to={appRouteNames.REGISTER_USER} className="login-noAccount">
-                            Tu n'as pas de compte? inscris-toi
+                            Tu n'as pas de compte? Inscris-toi
                         </Link>
                         <Button className='mt-4 btn-main' type={'submit'} variant='' block="true">
                             {isLoading ?
