@@ -8,29 +8,27 @@ Signal.init(
 		user_id_requester: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			require: true,
+			require: true
 		},
-
 		user_id_to_signal: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			require: true,
+			require: true
 		},
 		reason: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			require: true
 		},
-
 		comment: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			require: false
-		},
+		}
 	},
 	{
 		sequelize: connection,
-		modelName: 'signal',
+		modelName: 'signal'
 	}
 );
 

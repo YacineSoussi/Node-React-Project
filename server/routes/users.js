@@ -44,7 +44,6 @@ router.post("/users", async(req, res) => {
 });
 
 router.delete("/users/:id", checkAuthentication, async(req, res) => {
-    console.log(req.user);
     if (req.user.id !== parseInt(req.params.id, 10)) {
         return res.sendStatus(403);
     }
@@ -120,26 +119,23 @@ router.get("/users/:id", checkAuthentication, async(req, res) => {
 router.put("/resetPassword/:id", checkAuthentication, async(req, res) => {
     const userId = req.params.id;
     const userPasswordFromBody = req.body.password;
-    console.log(userId, userPasswordFromBody);
+
     try {
         const [, rows] = await User.update({
                 password: userPasswordFromBody
             },
-
             {
                 where: { id: userId },
                 returning: true,
                 individualHooks: true,
             }
-
         );
+
         if (!rows[0]) {
             res.sendStatus(404);
         } else {
             res.json(rows[0]);
         }
-
-
     } catch (error) {
         if (error instanceof ValidationError) {
             console.error(error);
@@ -149,8 +145,6 @@ router.put("/resetPassword/:id", checkAuthentication, async(req, res) => {
             console.error(error);
         }
     }
-
-
 });
 
 module.exports = router;

@@ -9,7 +9,6 @@ const router = new Router();
 
 router.get("/conversations", checkAuthentication, async(req, res) => {
     try {
-  
         const result = await Conversation.findAll({
             order: [["createdAt", "ASC"]],
             include: [
@@ -23,7 +22,6 @@ router.get("/conversations", checkAuthentication, async(req, res) => {
                 }
             ]
         });
-
         res.json(result);
     } catch (error) {
         res.sendStatus(500);
@@ -34,7 +32,7 @@ router.get("/conversations", checkAuthentication, async(req, res) => {
 
 router.get("/myconversations/:userId", checkAuthentication, async (req, res) => {
     try {
-        
+
         // Find Participant of the user
         const participants = await Participant.findAll({
             where: {
@@ -53,7 +51,7 @@ router.get("/myconversations/:userId", checkAuthentication, async (req, res) => 
                 { model: Message, as: "messages" }
             ]
         });
-        
+
         if (conversations.length === 0) {
             res.json({
                 message: "No conversation found"
