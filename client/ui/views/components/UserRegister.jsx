@@ -102,26 +102,26 @@ export const UserRegister = () => {
         };
         try {
             fetch('http://localhost:3000/register', requestOptions)
-            .then(response =>{
-            if(response.status === 201){
-                setResponse(response);
-                history.push(appRouteNames.LOGIN_USER);
-            }else {
-                if(isLoading){
-                setIsLoading(false)
-                }
-                addToast('Inscription échoué Veuillez re éssayer', {
-                appearance: 'error',
-                autoDismiss: true
+                .then(response =>{
+                    if(response.status === 201){
+                        setResponse(response);
+                        history.push(appRouteNames.LOGIN_USER);
+                    } else {
+                        if(isLoading){
+                            setIsLoading(false)
+                        }
+                        addToast('Inscription échoué Veuillez re éssayer', {
+                            appearance: 'error',
+                            autoDismiss: true
+                        });
+                    }
                 });
-            }
-            })
         } catch(err) {
             setIsLoading(false)
             addToast('oups !! un problème en cuisine', {
-            appearance: 'error',
-            autoDismiss: true
-            })
+                appearance: 'error',
+                autoDismiss: true
+            });
         }
     }
 
@@ -132,7 +132,7 @@ export const UserRegister = () => {
         if(result===false){
             setErrorEmail('le format de l\'email n\'est pas valide')
             if(isLoading){
-            setIsLoading(false)
+                setIsLoading(false)
             }
         }
     }

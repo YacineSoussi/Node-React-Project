@@ -45,7 +45,7 @@ export const Header = () => {
                 </Link>
                 <Link to={appRouteNames.LOGS_SITE} style={{ color: 'var(--brown-1)', textDecoration: 'none', fontSize: '1.5rem' }}>
                     Logs
-                <LogIcon/>
+                    <LogIcon/>
                 </Link>
                 {!isAuthenticated &&
                     <Link
@@ -60,7 +60,6 @@ export const Header = () => {
                     </Link>
                 }
             </Navbar.Brand>
-
             {isAuthenticated &&
                 <Navbar.Text>
                     <Button
