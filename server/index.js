@@ -116,6 +116,17 @@ io.on("connection", (socket) => {
         });
     });
 
+    socket.on("delete_message", ({ content, to, conversationAMAJ, newConversation, conversations, author }) => {
+        io.to(to).emit("delete_message", {
+            content,
+            from: socket.id,
+            conversationAMAJ, // conversationMAJ is the updated conversation
+            to: to,
+            newConversation: newConversation,
+            conversations: conversations
+        });
+    });
+
     socket.on("disconnect", (reason) => {
         console.log('User 1 disconnected because ' + reason);
     });
