@@ -1,5 +1,7 @@
 const { Op } = require('sequelize');
 const Friendship = require('../models/postgres/entities/Friendship');
+const Signal = require('../models/postgres/entities/Signal');
+
 const { asyncHandler } = require('../middlewares/async');
 const ErrorResponse = require('../utils/errorResponse');
 
@@ -87,3 +89,4 @@ exports.unblockUser = asyncHandler(async (req, res, next) => {
 	}
 	return next(new ErrorResponse('#NR', 400));
 });
+

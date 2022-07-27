@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User, Participant } = require("../models/postgres");
+const { User, Participant, S } = require("../models/postgres");
 const { ValidationError } = require("sequelize");
 const checkAuthentication = require("../middlewares/checkAuthentication");
 
@@ -28,6 +28,15 @@ router.get("/users", checkAuthentication, async(req, res) => {
             } }
             );
         res.json(result);
+    } catch (error) {
+        res.sendStatus(500);
+        console.error(error);
+    }
+});
+
+router.get("/users-signaled", checkAuthentication, async(req, res) => {
+    try {
+       
     } catch (error) {
         res.sendStatus(500);
         console.error(error);
