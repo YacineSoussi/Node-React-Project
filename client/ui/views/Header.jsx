@@ -54,6 +54,16 @@ export const Header = () => {
                 <Dropdown.Item href={appRouteNames.SHOWFRIENDS}>My friends</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+            <Dropdown>
+                <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                Reports
+                </Dropdown.Toggle>
+      
+                <Dropdown.Menu>
+                <Dropdown.Item href={appRouteNames.SHOWSIGNALED}>List of signal</Dropdown.Item>
+                <Dropdown.Item href={appRouteNames.SHOWBLOCKED}>List of blocked </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
 
            {!isAuthenticated &&
                 <Link to={appRouteNames.LOGIN_USER}

@@ -8,7 +8,11 @@ import {LogsComponent} from '../ui/views/components/LogsComponent';
 import { MessagerieApp } from '../ui/views/components/messagerie/MessagerieApp';
 import { UserList } from '../ui/views/components/UserList';
 import { PendingList } from '../ui/views/components/PendingList';
-import { MyFriends } from '../ui/views/components/MyFriends.jsx';
+import { MyFriends } from '../ui/views/components/MyFriends';
+import { SignalList } from '../ui/views/components/UsersSignaled';
+import { BlockList } from '../ui/views/components/UsersBlocked';
+
+
 
 
 
@@ -22,7 +26,9 @@ export const appRouteNames = {
     MESSAGERIE: '/messagerie',
     USERLIST: '/users',
     PENDING: '/pendings',
-    SHOWFRIENDS: '/my-friends'
+    SHOWFRIENDS: '/my-friends',
+    SHOWBLOCKED: '/blocked/users',
+    SHOWSIGNALED: '/signaled/users',
 };
 
 export const appRoutes = [
@@ -35,6 +41,8 @@ export const appRoutes = [
     { path: appRouteNames.USERLIST, component:UserList, exact: true },
     { path: appRouteNames.SHOWFRIENDS, component:MyFriends, exact: true },
     { path: appRouteNames.PENDING, component:PendingList, exact: true },
+    { path: appRouteNames.SHOWBLOCKED, component:BlockList, exact: true },
+    { path: appRouteNames.SHOWSIGNALED, component:SignalList, exact: true },
 
     
     { path: '*', component: RedirectToHome }
