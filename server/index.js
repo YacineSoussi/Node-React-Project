@@ -12,6 +12,8 @@ const cors = require("cors");
 const compression =  require("compression");
 const FriendshipRouter = require('./routes/friendship');
 const SignalRouter = require('./routes/signal');
+const BlockRouter = require('./routes/block');
+
 
 
 app.use(express.json());
@@ -31,6 +33,7 @@ app.use(Conversations);
 app.use(Participants);
 app.use('/friendship', FriendshipRouter);
 app.use('/signal', SignalRouter);
+app.use('/block', BlockRouter)
 
 app.listen(port, () => {
     Logger.info("Server is running on port " + port);

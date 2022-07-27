@@ -1,6 +1,6 @@
 
 const { Op } = require('sequelize');
-const UsersRelations = require('../models/postgres/entities/Friendship');
+const Friendship = require('../models/postgres/entities/Friendship');
 const { asyncHandler } = require('../middlewares/async');
 const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/postgres/entities/User');
@@ -77,12 +77,12 @@ exports.sendFriendRequest = asyncHandler(async (req, res, next) => {
 		user_receiver: req.body.id_receiver,
 	});
 
-	const relationAlreadyExists = await UsersRelations.findOne({
+	const relationAlreadyExists = await Friendship.findOne({
 		where: { user_sender: datas.user_sender, user_receiver: datas.user_receiver },
 	});
 	if (relationAlreadyExists)
 		return next(new ErrorResponse('Relation already exists.', 422));
-	const result = await UsersRelations.create(datas);
+	const result = await Friendship.create(datas);
 	if (result) res.json(result, 201);
 });
 
@@ -102,7 +102,7 @@ exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
 	});
 	if (!transmitterUser) return next(new ErrorResponse('#NO', 422)); // No User
 
-	const friendship = await UsersRelations.findOne({
+	const friendship = await Friendship.findOne({
 		where: {
 			[Op.or]: [
 				{
@@ -131,7 +131,7 @@ exports.answerFriendsRequest = asyncHandler(async (req, res, next) => {
 
 exports.deleteFriend = asyncHandler(async (req, res, next) => {
 	
-	const relationAlreadyExists = await UsersRelations.findOne({
+	const relationAlreadyExists = await Friendship.findOne({
 		where: {
 			[Op.or]: [{user_sender: req.body.id_receiver, user_receiver: req.user.id }, { user_sender: req.user.id , user_receiver: req.body.id_receiver}]
 		},
@@ -140,7 +140,7 @@ exports.deleteFriend = asyncHandler(async (req, res, next) => {
 		return next(new ErrorResponse('Relation does not exist.', 400));
 
 	console.log(relationAlreadyExists);
-	const result = await UsersRelations.destroy({
+	const result = await Friendship.destroy({
 		where: {
 			[Op.or]: [{user_sender: req.body.id_receiver, user_receiver: req.user.id }, { user_sender: req.user.id , user_receiver: req.body.id_receiver}]
 		},
@@ -160,7 +160,7 @@ const orderUsersIds = ({ user_sender, user_receiver }) => {
 };
 
 const getUserRelations = async (id) => {
-	const relations = await UsersRelations.findAll({
+	const relations = await Friendship.findAll({
 		where: {
 			[Op.or]: [{ user_sender: id }, { user_receiver: id }],
 		},
