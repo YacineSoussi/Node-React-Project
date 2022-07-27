@@ -11,6 +11,12 @@ const app = express();
 const cors = require("cors");
 const socketIo = require("socket.io");
 const http = require("http");
+const compression =  require("compression");
+const FriendshipRouter = require('./routes/friendship');
+const SignalRouter = require('./routes/signal');
+const BlockRouter = require('./routes/block');
+
+
 
 app.use(express.json());
 
@@ -28,6 +34,9 @@ app.use(UserRouter);
 app.use(Logs);
 app.use(Conversations);
 app.use(Participants);
+app.use('/friendship', FriendshipRouter);
+app.use('/signal', SignalRouter);
+app.use('/block', BlockRouter)
 
 const server = http.createServer(app);
 

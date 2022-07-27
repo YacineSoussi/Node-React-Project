@@ -11,7 +11,15 @@ function formatError(error) {
         return acc;
     }, {});
 }
-
+router.get("/users-list", checkAuthentication, async(req, res) => {
+    try {
+        const result = await User.findAll({ where: req.query });
+        res.json(result);
+    } catch (error) {
+        res.sendStatus(500);
+        console.error(error);
+    }
+});
 router.get("/users", checkAuthentication, async(req, res) => {
     try {
         const result = await User.findAll({
@@ -22,6 +30,15 @@ router.get("/users", checkAuthentication, async(req, res) => {
             }
         });
         res.json(result);
+    } catch (error) {
+        res.sendStatus(500);
+        console.error(error);
+    }
+});
+
+router.get("/users-signaled", checkAuthentication, async(req, res) => {
+    try {
+       
     } catch (error) {
         res.sendStatus(500);
         console.error(error);

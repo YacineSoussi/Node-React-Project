@@ -5,13 +5,17 @@ const {
 	showFriendsList,
 	showPendingFriendsList,
 	answerFriendsRequest,
+	deleteFriend,
 } = require('../controllers/friendship');
 
 const router = new Router();
 
 router.route('/add').post(checkAuthentication, sendFriendRequest);
 router.route('/pendings').get(checkAuthentication, showPendingFriendsList);
-router.route('/show/:id').get(checkAuthentication, showFriendsList);
+router.route('/show').get(checkAuthentication, showFriendsList);
 router.route('/request-answer').post(checkAuthentication, answerFriendsRequest);
+router.route('/delete').delete(checkAuthentication, deleteFriend);
+
+
 
 module.exports = router;
