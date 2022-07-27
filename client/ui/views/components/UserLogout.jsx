@@ -1,6 +1,6 @@
 import { removeAccessToken, removeUserData } from "../../../adapters/CookiesAppStorage";
 
-import { appRouteName } from '../../../configuration/appRoutes';
+import { appRouteNames } from '../../../configuration/appRoutes';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 
