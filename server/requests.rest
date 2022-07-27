@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROY
 
 # body
 ###
-GET http://localhost:3000/users/4
+GET http://localhost:3000/users/10
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiYWxpbG91IiwiaWF0IjoxNjU3MTIyMjMyLCJleHAiOjE2ODg2Nzk4MzJ9.wcJAwEcMCm2askMzs_hVkkyEtGLoHfJE9WFZYB7MWjY
 ###
 POST http://localhost:3000/users
@@ -78,6 +78,6 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "",
-    "password": "OKOKOK"
+    "email": "test@test.com",
+    "password": "azertyuiop"
 }

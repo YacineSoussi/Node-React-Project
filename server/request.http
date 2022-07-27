@@ -18,8 +18,32 @@ GET http://localhost:3000/logs/62c5abede75cf83d3526d77f
 
 ###
 
-GET http://localhost:3000/friendship/show
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiVGhlIHJlcXVlc3QgaGFzIHN1Y2NlZWRlZC4iLCJpYXQiOjE2NTcwMjY5NDksImV4cCI6MTY4ODU4NDU0OX0.Z-f6jbd_wQu6Ae-lDQCqZoYh9cHqZ92f9W7rYjV_2l0
+POST http://localhost:3000/friendship/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3ROYW1lIjoiWWFjaW5lIiwiaWF0IjoxNjU4OTYwMTE2LCJleHAiOjE2OTA1MTc3MTZ9.6s1ah9xhyBuSvnsxTHVHs0xjpFKfDvgDaro4zzjxg9Y
+
+{
+    "id_receiver": 10
+}
+
+###
+GET  http://localhost:3000/friendship/show
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6InRlc3QiLCJpYXQiOjE2NTg5NjE2MjUsImV4cCI6MTY5MDUxOTIyNX0.DjQUXzQ1oRyk7LLKssu9VSWUUlFl2CmTtkA9Fl2mjck
+
+###
+
+GET  http://localhost:3000/friendship/pendings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6InRlc3QiLCJpYXQiOjE2NTg5NjE3NjEsImV4cCI6MTY5MDUxOTM2MX0.IRO2iPDeW60uFpfveUsuhGHieYuewtFoQiGtxM3jvy4
+
+###
+POST http://localhost:3000/friendship/request-answer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6InRlc3QiLCJpYXQiOjE2NTg5NjE3NjEsImV4cCI6MTY5MDUxOTM2MX0.IRO2iPDeW60uFpfveUsuhGHieYuewtFoQiGtxM3jvy4
+    
+{
+        "id_sender": 2,
+        "answer": "accept"
+}
 
 ###
 PUT http://localhost:3000/messages/284

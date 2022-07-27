@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 
 export const SignalList = () => {
 
+    console.log("SignalList");
     const [users, setUsers] = useState([]);
 
     const fetchUsers = async () => {

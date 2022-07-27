@@ -124,7 +124,8 @@ export const MessagerieApp = () => {
                 'Authorization': `Bearer ${getAccessToken()}`
             }
         }).then(response => response.json()).then(data => {
-            setAmis(data);
+            
+            setAmis(data.friends);
         }).catch(error => {
             console.error(error);
         });

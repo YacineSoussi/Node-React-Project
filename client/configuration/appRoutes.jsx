@@ -45,12 +45,12 @@ export const appRoutes = [
     { path: appRouteNames.MESSAGERIE, component:MessagerieApp, exact: true },
     { path: appRouteNames.ACCOUNT_INFO, component:MyAccount, exact: true},
     { path: appRouteNames.RESET_PASSWORD, component:ResetPassword, exact: true},
-    { path: '/', component: RedirectToHome },
     { path: appRouteNames.USERLIST, component:UserList, exact: true },
     { path: appRouteNames.SHOWFRIENDS, component:MyFriends, exact: true },
     { path: appRouteNames.PENDING, component:PendingList, exact: true },
     { path: appRouteNames.SHOWBLOCKED, component:BlockList, exact: true },
     { path: appRouteNames.SHOWSIGNALED, component:SignalList, exact: true },
+    { path: '/', component: RedirectToHome },
 
     
     { path: '*', component: RedirectToHome }
