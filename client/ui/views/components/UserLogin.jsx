@@ -27,13 +27,12 @@ export const UserLogin = () => {
     useMustBeLoggedOutGuard();
 
     return (
-        <Row className='justify-content-center'>
-            <Col md={8}>
-                <Card className='h-100' body>
+        <Row className='justify-content-center login-form'>
+            <Col md={8} className="col-login">
+                <Card body>
                     <PageHeader>
                         Connexion <LoginIcon/>
                     </PageHeader>
-
                     <Form className='mt-4' onSubmit={onSubmit}>
                         <InputWithErrors
                             label='Email'
@@ -50,8 +49,8 @@ export const UserLogin = () => {
                             placeholder='password'
                             type='password'
                         />
-                        <Link to={appRouteNames.REGISTER_USER}>
-                            Tu n'as pas de compte? inscris-toi
+                        <Link to={appRouteNames.REGISTER_USER} className="login-noAccount">
+                            Tu n'as pas de compte? Inscris-toi
                         </Link>
                         <Button className='mt-4 btn-main' type={'submit'} variant='' block="true">
                             {isLoading ?
