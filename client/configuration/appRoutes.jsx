@@ -1,18 +1,15 @@
-
-import {UserRegister} from '../ui/views/components/UserRegister';
-import {UserLogin} from '../ui/views/components/UserLogin';
-import {UserLogout} from '../ui/views/components/UserLogout';
-import {UserAnalytic} from '../ui/views/components/UserAnalytic';
-import {RedirectToHome} from '../ui/views/components/RedirectToHome';
-import {EditProfile} from '../ui/views/components/Account/EditProfile';
-import {LogsComponent} from '../ui/views/components/LogsComponent';
+import { EditProfile } from '../ui/views/components/Account/EditProfile';
+import { LogsComponent } from '../ui/views/components/LogsComponent';
 import { MessagerieApp } from '../ui/views/components/messagerie/MessagerieApp';
 import { MyAccount } from '../ui/views/components/Account/MyAccount';
+import { RedirectToHome } from '../ui/views/components/RedirectToHome';
 import { ResetPassword } from '../ui/views/components/Account/ResetPassword';
- 
+import { UserAnalytic } from '../ui/views/components/UserAnalytic';
+import { UserLogin } from '../ui/views/components/UserLogin';
+import { UserLogout } from '../ui/views/components/UserLogout';
+import { UserRegister } from '../ui/views/components/UserRegister';
 
 export const appRouteNames = {
-
     LOGIN_USER: '/login',
     LOGOUT_USER: '/logout',
     ACCOUNT_INFO: '/profile',
@@ -35,4 +32,4 @@ export const appRoutes = [
     { path: appRouteNames.ACCOUNT_INFO, component:MyAccount, exact: true},
     { path: appRouteNames.RESET_PASSWORD, component:ResetPassword, exact: true},
     { path: '*', component: RedirectToHome }
-];  
+];
