@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { getAccessToken, getUserData } from '../../../adapters/CookiesAppStorage';
+import { getAccessToken } from '../../../adapters/CookiesAppStorage';
 
 export const UserList = () => {
 
@@ -43,43 +43,43 @@ const addFriend = async (id) => {
 const generateKey = (str, index) => {
 	return `${str}-${index}`;
 };
+const handleClick = (key) => {
+  const buttonToClick = document.getElementById(key);
+  buttonToClick.style.display = "none";
+}
+
 
 
 
   useEffect(() => {
     fetchUsers();
   }, []);
-
  
   return (
-        <div>
-            {users.map((user,key) => (
-                <Fragment>
-                    
-                    <p key={key}> {user.email}</p> 
-                    {!hidden &&
-                        <button
-                            
-                            color='blue'
-                            size={25}
-                            key={generateKey('upd',key)}
-                        
-                            onClick={() => {
-                                addFriend(user.id);
-                                setHidden(true)
-                                }
-                            }
-                        > send request {user.id}
-                        </button>
-                    }
-                </Fragment>
-                        
+    <div>
+      {users.map((user,key) => (
+        <Fragment key={key}>  
+        <p> {user.email}</p> 
+          {!hidden &&
+            <button
+                id={key}
+                color='blue'
+                size={25}
             
-            ))}
-        </div>
-    
-       
+                onClick={() => {
+                    addFriend(user.id);
+                    handleClick(key);
 
+                    }
+                }
+            > send request {user.id}
+            </button>
+          }
+        </Fragment>
+                
+      ))}
+    </div>
+  
   );
 }
 
