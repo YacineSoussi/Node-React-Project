@@ -31,7 +31,6 @@ export function storeUserData(user){
     Cookies.set(USER_EMAIL_COOKIE_KEY, user.email, { expires: getDateOfExpiration() })
     Cookies.set(USER_ROLE_COOKIE_KEY, user.role, { expires: getDateOfExpiration() })
     Cookies.set(USER_CREATED_AT_COOKIE_KEY, user.creationDate, { expires: getDateOfExpiration() })
-
 }
 
 export function getUserData(){

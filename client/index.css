@@ -27,8 +27,27 @@ code {
     height: 70px;
 }
 
+.App nav.navbar .navbar-brand > a {
+    margin: 0 5px;
+}
+
 .App .main-container {
     height: calc(100% - 70px);
+}
+
+.App .main-container .login-form {
+    height: 100%;
+}
+
+.App .main-container .login-form .login-noAccount {
+    display: block;
+    margin-top: 10px;
+}
+
+.App .main-container .col-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .App .message-container {
