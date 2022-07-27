@@ -27,6 +27,10 @@ code {
     height: 70px;
 }
 
+.App nav.navbar .navbar-brand {
+    display: flex;
+}
+
 .App nav.navbar .navbar-brand > a {
     margin: 0 5px;
 }
